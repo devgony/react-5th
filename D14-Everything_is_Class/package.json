@@ -1,0 +1,17 @@
+{
+  "name": "react-5th",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "ts-node main.ts"
+  },
+  "author": "devgony",
+  "license": "ISC",
+  "dependencies": {
+    "jsdom": "^24.1.0",
+    "ts-node": "^10.9.2"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^21.1.7"
+  }
+}
