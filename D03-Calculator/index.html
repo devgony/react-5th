@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css"
+    />
+    <style>
+      body {
+        padding: 20px;
+      }
+      h1 {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    function App() {
+      const [left, setLeft] = React.useState();
+      const [right, setRight] = React.useState();
+      const [operation, setOperation] = React.useState("");
+      const [result, setResult] = React.useState();
+      const calculate = (left, right, operation) => {
+        try {
+          const leftNum = parseInt(left);
+          const rightNum = parseInt(right);
+          switch (operation) {
+            case "+":
+              return leftNum + rightNum;
+            case "-":
+              return leftNum - rightNum;
+            case "/": {
+              if (rightNum == 0) {
+                throw "cannot devide by zero";
+              }
+              return leftNum / rightNum;
+            }
+            case "*":
+              return leftNum * rightNum;
+            default:
+              throw "wrong operation";
+          }
+        } catch (e) {
+          window.alert(e);
+        }
+      };
+      const showResult = () => setResult(calculate(left, right, operation));
+
+      return (
+        <div className="container">
+          <h1>🔥 Calculator 🔥</h1>
+          <input
+            placeholder="👉 Write a number..."
+            type="number"
+            value={left}
+            onChange={(e) => setLeft(e.target.value)}
+          />
+          <input
+            placeholder="👉 And another one..."
+            type="number"
+            value={right}
+            onChange={(e) => setRight(e.target.value)}
+          />
+          <select
+            name="operation"
+            id="operation-select"
+            onChange={(e) => setOperation(e.target.value)}
+          >
+            <option value="">👉 Select operation</option>
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="/">/</option>
+            <option value="*">*</option>
+          </select>
+          <button onClick={showResult}>Calculate</button>
+          {result && <h1>The result is {result}</h1>}
+        </div>
+      );
+    }
+    const root = document.getElementById("root");
+    ReactDOM.render(<App />, root);
+  </script>
+</html>
