@@ -1,0 +1,53 @@
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: lightgray;
+  text-align: center;
+}
+
+.content {
+  width: 100%;
+}
+
+.img {
+  max-width: 80%;
+  width: 20rem;
+  height: 20rem;
+  object-fit: cover;
+  border-radius: 10%;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 3rem;
+  padding: 3rem;
+  list-style-type: none;
+  place-items: center;
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+.back {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  font-size: 2rem;
+  color: lightgray;
+  cursor: pointer;
+}
+
+.dummy {
+  margin-top: 3rem;
+}
