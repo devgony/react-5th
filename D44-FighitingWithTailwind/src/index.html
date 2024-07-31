@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./output.css" rel="stylesheet" />
+  </head>
+  <body>
+    <main class="flex justify-center items-center w-screen h-screen">
+      <article
+        class="h-[780px] w-[360px] border-8 border-black rounded-2xl px-4 flex flex-col gap-4 font-bold pb-4 shadow-[0_30px_20px_-30px_rgba(0,0,0,0.8)] pt-12 overflow-clip"
+      >
+        <span class="flex gap-2">
+          <h2>March 2021</h2>
+          <svg
+            data-slot="icon"
+            fill="none"
+            stroke-width="1.5"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            width="16"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m19.5 8.25-7.5 7.5-7.5-7.5"
+            ></path>
+          </svg>
+        </span>
+        <hr class="w-full" />
+        <section class="flex flex-col items-center gap-4">
+          <div class="text-center">
+            <h2>Hello, Bruno!</h2>
+            <h2>Your medicines for today</h2>
+          </div>
+          <div class="flex gap-4">
+            <span class="flex flex-col items-center justify-center m-1">
+              <h1 class="text-2xl">16</h1>
+              <p>Mon</p>
+            </span>
+            <span class="flex flex-col items-center justify-center m-1">
+              <h1 class="text-2xl">17</h1>
+              <p>Tue</p>
+            </span>
+            <span
+              class="flex flex-col items-center justify-center bg-blue-400 rounded-xl p-1"
+            >
+              <h1 class="text-2xl">18</h1>
+              <p>Wed</p>
+            </span>
+            <span class="flex flex-col items-center justify-center m-1">
+              <h1 class="text-2xl">19</h1>
+              <p>Thu</p>
+            </span>
+            <span class="flex flex-col items-center justify-center m-1">
+              <h1 class="text-2xl">20</h1>
+              <p>Fri</p>
+            </span>
+            <span class="flex flex-col items-center justify-center m-1">
+              <h1 class="text-2xl">21</h1>
+              <p>Sat</p>
+            </span>
+          </div>
+          <div class="my-12"></div>
+          <div class="w-full bg-blue-400 rounded-2xl flex justify-between">
+            <div class="bg-yellow-400 rounded-2xl w-5/6 p-4">
+              <h1>Nora - BE</h1>
+              <p>Norenthindrone - 0.35mg</p>
+              <p class="mt-24">7h30AM</p>
+            </div>
+            <svg
+              class="mr-4"
+              data-slot="icon"
+              fill="none"
+              stroke-width="1.5"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              width="24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m4.5 12.75 6 6 9-13.5"
+              ></path>
+            </svg>
+          </div>
+          <div class="bg-green-400 rounded-2xl w-full h-64 p-4">
+            <h1>Feosol</h1>
+            <p>Ferrous Sulfate - 600mg</p>
+          </div>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>
