@@ -3,6 +3,7 @@ import Link from "next/link";
 import getTweets, { Tweets } from "./actoins";
 import { useEffect, useState } from "react";
 import { GrCaretNext, GrCaretPrevious } from "react-icons/gr";
+import AddTweet from "./components/add-tweet";
 
 export default function Home() {
   const [page, setPage] = useState(0);
@@ -16,6 +17,7 @@ export default function Home() {
   }, [page]);
   return (
     <div className="flex flex-col">
+      <AddTweet />
       <div className="flex">
         <GrCaretPrevious
           className="cursor-pointer"
