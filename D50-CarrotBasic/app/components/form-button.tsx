@@ -8,7 +8,7 @@ interface FormButtonProps {
 export default function FormButton({ payload }: FormButtonProps) {
   const { pending } = useFormStatus();
   return (
-    <button disabled={pending} className="border border-black">
+    <button type="submit" disabled={pending} className="border border-black">
       {pending ? "로딩 중" : payload}
     </button>
   );
