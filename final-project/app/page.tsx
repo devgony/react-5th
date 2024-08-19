@@ -21,12 +21,12 @@ export default function Home() {
       <div className="flex">
         <GrCaretPrevious
           className="cursor-pointer"
-          onClick={() => setPage((prev) => (prev > 0 ? --prev : prev))}
+          onChange={() => setPage((prev) => (prev > 0 ? --prev : prev))}
         />
         <h2>{page + 1}</h2>
         <GrCaretNext
           className="cursor-pointer"
-          onClick={() =>
+          onChange={() =>
             setPage((prev) => (total && prev < total - 1 ? ++prev : prev))
           }
         />

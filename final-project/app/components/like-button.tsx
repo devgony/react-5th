@@ -28,7 +28,7 @@ export default function LikeButton({ count, isLiked, tweetId }: Props) {
       className={`${
         state.isLiked ? "bg-orange-300" : ""
       } w-24 flex justify-center items-center cursor-pointer border-black border-2 gap-2`}
-      onClick={onClick}
+      onChange={onClick}
     >
       {state.isLiked ? <MdThumbUp /> : <MdOutlineThumbUp />}
       <p>{state.count}</p>
