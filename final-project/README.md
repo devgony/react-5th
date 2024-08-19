@@ -1,4 +1,4 @@
-# Carrot basic
+# Final project
 
 ## D54-Authentication
 
