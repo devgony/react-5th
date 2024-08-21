@@ -8,31 +8,37 @@ import FormButton from "../../components/form-button";
 export default function CreateAccount() {
   const [state, dispatch] = useFormState(handleForm, null);
   return (
-    <main className="flex justify-center items-center flex-col">
-      <form action={dispatch} className="flex flex-col">
-        <Input
-          name="email"
-          type="email"
-          placeholder="email"
-          required={true}
-          errors={state?.fieldErrors?.email}
-        />
-        <Input
-          name="username"
-          type="text"
-          placeholder="username"
-          required={true}
-          errors={state?.fieldErrors?.username}
-        />
-        <Input
-          name="password"
-          type="password"
-          placeholder="password"
-          required={true}
-          errors={state?.fieldErrors?.password}
-        />
-        <FormButton payload="Create Account" />
-      </form>
-    </main>
+    <form
+      action={dispatch}
+      className="flex flex-col w-full gap-3 justify-center h-screen"
+    >
+      <h1 className="text-xl font-bold text-center">Enter your email</h1>
+      <p className="text-muted-foreground text-center mb-12">
+        and set your unique username
+      </p>
+      <Input
+        name="email"
+        type="email"
+        placeholder="Email"
+        required={true}
+        errors={state?.fieldErrors?.email}
+      />
+      <Input
+        name="username"
+        type="text"
+        placeholder="Username"
+        required={true}
+        errors={state?.fieldErrors?.username}
+      />
+      <Input
+        name="password"
+        type="password"
+        placeholder="Password"
+        required={true}
+        errors={state?.fieldErrors?.password}
+      />
+      {/* TODO: add password confirm */}
+      <FormButton payload="Create Account" />
+    </form>
   );
 }

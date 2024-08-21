@@ -1,5 +1,6 @@
 "use client";
 import { useFormStatus } from "react-dom";
+import { Button } from "./ui/button";
 
 interface FormButtonProps {
   payload: string;
@@ -8,8 +9,8 @@ interface FormButtonProps {
 export default function FormButton({ payload }: FormButtonProps) {
   const { pending } = useFormStatus();
   return (
-    <button type="submit" disabled={pending} className="border border-black">
+    <Button type="submit" disabled={pending} className="border border-black">
       {pending ? "로딩 중" : payload}
-    </button>
+    </Button>
   );
 }
