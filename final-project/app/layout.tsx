@@ -37,7 +37,7 @@ export default async function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <div className="px-8">{children}</div>
+            <div className="p-4">{children}</div>
             {session.id && <BottomBar />}
           </ThemeProvider>
         </div>

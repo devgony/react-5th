@@ -6,8 +6,15 @@ import { z } from "zod";
 
 export default async function getTweets(page: number) {
   const tweets = await db.tweet.findMany({
-    skip: page * 1,
-    take: 1,
+    // skip: page * 1,
+    // take: 1,
+    include: {
+      user: {
+        select: {
+          username: true,
+        },
+      },
+    },
     orderBy: {
       created_at: "desc",
     },

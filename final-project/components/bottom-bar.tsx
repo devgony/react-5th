@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MdOutlineHomeWork, MdHomeWork } from "react-icons/md";
+import { ModeToggle } from "./mode-toggle";
+import { BsPostcardHeart, BsPostcardHeartFill } from "react-icons/bs";
 
 export default function BottomBar() {
   const pathname = usePathname();
@@ -10,9 +12,9 @@ export default function BottomBar() {
     <div className="fixed bottom-0 max-w-xl w-full bg-secondary border-t border-muted-foreground flex justify-around py-3">
       <Link href="/" className="flex flex-col items-center gap-px">
         {pathname === "/" ? (
-          <MdHomeWork className="w-7 h-7" />
+          <BsPostcardHeartFill className="w-7 h-7" />
         ) : (
-          <MdOutlineHomeWork className="w-7 h-7" />
+          <BsPostcardHeart className="w-7 h-7" />
         )}
         <p className="text-xs">Tweets</p>
       </Link>
@@ -33,6 +35,8 @@ export default function BottomBar() {
         )}
         <p className="text-xs">Profile</p>
       </Link>
+
+      <ModeToggle />
     </div>
   );
 }
