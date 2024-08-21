@@ -3,8 +3,8 @@ import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "next-themes";
-import Header from "@/components/header";
 import getSession from "@/lib/session";
+import BottomBar from "@/components/bottom-bar";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -30,15 +30,15 @@ export default async function RootLayout({
           "bg-yellow-900"
         )}
       >
-        <div className="max-w-xl mx-auto bg-background h-screen px-8">
+        <div className="max-w-xl mx-auto bg-background h-screen overflow-hidden">
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"
             enableSystem
             disableTransitionOnChange
           >
-            {session.id && <Header />}
-            {children}
+            <div className="px-8">{children}</div>
+            {session.id && <BottomBar />}
           </ThemeProvider>
         </div>
       </body>
