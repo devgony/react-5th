@@ -2,8 +2,8 @@
 
 import { useFormState } from "react-dom";
 import handleForm from "./actions";
-import Input from "../components/input";
-import FormButton from "../components/form-button";
+import Input from "../../components/input";
+import FormButton from "../../components/form-button";
 
 export default function CreateAccount() {
   const [state, dispatch] = useFormState(handleForm, null);

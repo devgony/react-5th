@@ -1,6 +1,6 @@
-import LikeButton from "@/app/components/like-button";
+import LikeButton from "@/components/like-button";
 import getTweet, { getLikesCached, getResponsesCached } from "./actions";
-import Responses from "@/app/components/responses";
+import Responses from "@/components/responses";
 
 export default async function Tweet({ params }: { params: { id: string } }) {
   const tweetId = +params.id;

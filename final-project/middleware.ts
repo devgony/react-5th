@@ -8,13 +8,14 @@ interface Routes {
 const publicOnlyUrls: Routes = {
   "/log-in": true,
   "/create-account": true,
+  "/welcome": true,
 };
 
 export async function middleware(request: NextRequest) {
   const session = await getSession();
   const exists = publicOnlyUrls[request.nextUrl.pathname];
   if (!session.id && !exists) {
-    return NextResponse.redirect(new URL("/log-in", request.url));
+    return NextResponse.redirect(new URL("/welcome", request.url));
   }
 }
 

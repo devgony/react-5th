@@ -1,7 +1,7 @@
 "use client";
 import { useFormState } from "react-dom";
-import FormButton from "../components/form-button";
-import Input from "../components/input";
+import FormButton from "../../components/form-button";
+import Input from "../../components/input";
 import { searchTweets } from "./actions";
 import { useEffect, useRef } from "react";
 

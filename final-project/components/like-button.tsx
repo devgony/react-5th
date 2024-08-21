@@ -1,7 +1,7 @@
 "use client";
 
 import { MdThumbUp, MdOutlineThumbUp } from "react-icons/md";
-import { dislikeTweet, likeTweet } from "../tweets/[id]/actions";
+import { dislikeTweet, likeTweet } from "../app/tweets/[id]/actions";
 import { startTransition, useOptimistic } from "react";
 
 interface Props {

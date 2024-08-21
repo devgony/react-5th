@@ -1,12 +1,13 @@
 "use client";
-import Input from "@/app/components/input";
+import Input from "@/components/input";
 import { getUserByUsername, getUserByUsernameCached, User } from "../actions";
 import { UsernameParams } from "../page";
 import { useEffect, useState } from "react";
 import { editUser, editUserCached } from "./actions";
 import { useFormState } from "react-dom";
 import { notFound } from "next/navigation";
-import FormButton from "@/app/components/form-button";
+import FormButton from "@/components/form-button";
+import { revalidatePath } from "next/cache";
 
 export default function EditProfile({ params: { username } }: UsernameParams) {
   const [user, setUser] = useState<User>();

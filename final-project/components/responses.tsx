@@ -1,7 +1,7 @@
 "use client";
 import { useOptimistic, useRef } from "react";
 import { useFormState } from "react-dom";
-import { createResponse, ResponsesType } from "../tweets/[id]/actions";
+import { createResponse, ResponsesType } from "../app/tweets/[id]/actions";
 import FormButton from "./form-button";
 import Input from "./input";
 import { z } from "zod";

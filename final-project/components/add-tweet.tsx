@@ -1,8 +1,8 @@
 import db from "@/lib/db";
 import FormButton from "./form-button";
-import Input from "./input";
-import { addTweet } from "../actoins";
+import { addTweet } from "../app/actoins";
 import { useFormState } from "react-dom";
+import Input from "./input";
 
 export default function AddTweet() {
   const [state, dispatch] = useFormState(addTweet, null);
