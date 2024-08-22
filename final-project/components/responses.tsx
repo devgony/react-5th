@@ -8,6 +8,10 @@ import { z } from "zod";
 import { Textarea } from "./ui/textarea";
 import { useForm } from "react-hook-form";
 import { text } from "stream/consumers";
+import Article from "./article";
+import { meState } from "@/lib/atoms";
+import { useRecoilValue } from "recoil";
+import { notFound } from "next/navigation";
 
 interface Props {
   responses: ResponsesType;
@@ -15,6 +19,7 @@ interface Props {
 }
 
 export default function Responses({ responses, tweetId }: Props) {
+  const me = useRecoilValue(meState);
   const [state, reducerFn] = useOptimistic(
     { responses },
     (prev, formData: FormData) => {
@@ -27,6 +32,10 @@ export default function Responses({ responses, tweetId }: Props) {
         return { responses: prev.responses };
       }
 
+      if (!me) {
+        notFound();
+      }
+
       return {
         responses: [
           ...prev.responses,
@@ -36,6 +45,9 @@ export default function Responses({ responses, tweetId }: Props) {
             created_at: new Date(),
             tweetId: 0,
             userId: 0,
+            user: {
+              username: me?.username,
+            },
           },
         ],
       };
@@ -74,12 +86,15 @@ export default function Responses({ responses, tweetId }: Props) {
 
   return (
     <>
-      {state.responses.map((r, i) => (
-        <div key={i} className="flex gap-2">
-          <p>by {r.userId}:</p>
-          <p>{r.payload}</p>
-        </div>
+      {state.responses.map(({ user: { username }, payload, created_at }, i) => (
+        <Article
+          key={i}
+          username={username}
+          content={payload}
+          updated_at={created_at}
+        />
       ))}
+      <div className="my-8" />
       <form className="flex sticky bottom-20 items-end" action={action}>
         <Textarea
           ref={textareaRef}

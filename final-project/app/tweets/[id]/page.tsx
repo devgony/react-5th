@@ -7,6 +7,8 @@ import { BsPostcardHeartFill } from "react-icons/bs";
 import Avatar from "@/components/avatar";
 import { notFound } from "next/navigation";
 import { formatToTimeAgo } from "@/lib/utils";
+import Image from "next/image";
+import Article from "@/components/article";
 
 export default async function Tweet({ params }: { params: { id: string } }) {
   const tweetId = +params.id;
@@ -17,6 +19,7 @@ export default async function Tweet({ params }: { params: { id: string } }) {
   const {
     title,
     content,
+    photo,
     updated_at,
     user: { username },
   } = tweet;
@@ -37,16 +40,16 @@ export default async function Tweet({ params }: { params: { id: string } }) {
         className="bg-secondary p-2 rounded-full"
       />
       <h1 className="text-3xl font-bold">{title}</h1>
-      <section className="flex gap-2">
-        <Avatar username={username} />
-        <article className="-mt-2">
-          <span className="flex gap-2">
-            <p className="text-blue-400">{username}</p>
-            <p>{formatToTimeAgo(updated_at.toString())}</p>
-          </span>
-          <p className="text-muted-foreground text-sm break-all">{content}</p>
-        </article>
-      </section>
+      <Article content={content} updated_at={updated_at} username={username} />
+      {photo && (
+        <Image
+          className="mx-auto"
+          src={photo + "/public"}
+          alt="tweet"
+          width={400}
+          height={400}
+        />
+      )}
       <hr />
       <LikeButton count={count} isLiked={isLiked} tweetId={tweetId} />
       <hr className="border-4" />

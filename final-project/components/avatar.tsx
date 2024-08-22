@@ -24,7 +24,7 @@ export default function _Avatar({ username, src }: Props) {
   const randomFgColor = `#${(0xffffff - parseInt(randomBgColor, 16)).toString(
     16
   )}`;
-  console.log(randomBgColor, randomFgColor);
+
   return (
     <Avatar className="size-12">
       <AvatarImage src={src} />

@@ -23,6 +23,13 @@ export async function getResponses(tweetId: number) {
     where: {
       tweetId,
     },
+    include: {
+      user: {
+        select: {
+          username: true,
+        },
+      },
+    },
   });
 }
 
