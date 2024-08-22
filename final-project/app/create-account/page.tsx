@@ -10,10 +10,10 @@ export default function CreateAccount() {
   return (
     <form
       action={dispatch}
-      className="flex flex-col w-full gap-3 justify-center h-screen"
+      className="flex h-screen w-full flex-col justify-center gap-3"
     >
-      <h1 className="text-xl font-bold text-center">Enter your email</h1>
-      <p className="text-muted-foreground text-center mb-12">
+      <h1 className="text-center text-xl font-bold">Enter your email</h1>
+      <p className="mb-12 text-center text-muted-foreground">
         and set your unique username
       </p>
       <Input

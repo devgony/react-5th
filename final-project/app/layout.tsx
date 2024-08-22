@@ -31,7 +31,7 @@ export default async function RootLayout({
           "bg-yellow-900"
         )}
       >
-        <div className="max-w-xl mx-auto bg-background min-h-screen">
+        <div className="mx-auto min-h-screen max-w-xl bg-background">
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"

@@ -25,14 +25,14 @@ export default function Home() {
   };
   return (
     <>
-      <main className="flex flex-col gap-2 min-h-screen">
+      <main className="flex min-h-screen flex-col gap-2">
         {showInput && <AddTweet toggleShowInput={toggleShowInput} />}
-        <header className="flex justify-between items-center">
+        <header className="flex items-center justify-between">
           <span className="flex items-center gap-2">
-            <BsPostcardHeart className="w-10 h-10" />
+            <BsPostcardHeart className="h-10 w-10" />
             <h1 className="text-lg font-bold">Tweets</h1>
           </span>
-          <IoSearch className="w-10 h-10" />
+          <IoSearch className="h-10 w-10" />
         </header>
         {/* TODO: Select Sort & View */}
         {tweets && <TweetList initTweets={tweets} />}
@@ -40,7 +40,7 @@ export default function Home() {
         {!showInput && (
           // TODO: why right-8 is not working?
           <FaCirclePlus
-            className="cursor-pointer bottom-32 right-8 text-primary hover:scale-125 transition sticky"
+            className="sticky bottom-32 right-8 cursor-pointer text-primary transition hover:scale-125"
             size={48}
             onClick={toggleInput}
           />

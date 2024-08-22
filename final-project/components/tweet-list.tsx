@@ -51,10 +51,10 @@ export default function TweetList({ initTweets }: Props) {
         <Link
           href={`/tweets/${id}`}
           key={id}
-          className="bg-secondary w-full cursor-pointer rounded-xl text-secondary-foreground p-4 flex justify-between h-48"
+          className="flex h-48 w-full cursor-pointer justify-between rounded-xl bg-secondary p-4 text-secondary-foreground"
         >
-          <section className="w-3/4 flex flex-col gap-2">
-            <span className="flex gap-2 items-center">
+          <section className="flex w-3/4 flex-col gap-2">
+            <span className="flex items-center gap-2">
               <Avatar username={username} />
               <p className="text-blue-400">{username}</p>
               <p className="text-xs text-muted-foreground">
@@ -67,7 +67,7 @@ export default function TweetList({ initTweets }: Props) {
             </h3>
           </section>
           <Image
-            className="object-cover size-24 border border-primary"
+            className="size-24 border border-primary object-cover"
             src="/welcome.png"
             alt="welcome"
             width={30}
@@ -78,7 +78,7 @@ export default function TweetList({ initTweets }: Props) {
       {!isLastPage ? (
         <span
           ref={trigger}
-          className="text-sm font-semibold bg-primary w-fit mx-auto px-3 py-2 rounded-md hover:opacity-90 active:scale-95"
+          className="mx-auto w-fit rounded-md bg-primary px-3 py-2 text-sm font-semibold hover:opacity-90 active:scale-95"
         >
           {isLoading ? "로딩 중" : "Load more"}
         </span>

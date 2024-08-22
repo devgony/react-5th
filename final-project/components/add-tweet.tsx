@@ -69,11 +69,11 @@ export default function AddTweet({ toggleShowInput }: Props) {
   };
   return (
     <form
-      className="w-full h-screen p-4 bg-secondary shadow-lg animate-slide-up flex flex-col gap-4 rounded-xl"
+      className="animate-slide-up flex h-screen w-full flex-col gap-4 rounded-xl bg-secondary p-4 shadow-lg"
       action={action}
     >
       <FaXmark
-        className="w-7 h-7 cursor-pointer"
+        className="h-7 w-7 cursor-pointer"
         onClick={() => toggleShowInput(false)}
       />
       <Input
@@ -89,10 +89,10 @@ export default function AddTweet({ toggleShowInput }: Props) {
           <AvatarImage src="https://github.com/devgony.png" />
           <AvatarFallback>avatar</AvatarFallback>
         </Avatar>
-        <div className="w-full -mt-1">
-          <p className="text-blue-400 pl-3 mb-1">{me?.username}</p>
+        <div className="-mt-1 w-full">
+          <p className="mb-1 pl-3 text-blue-400">{me?.username}</p>
           <Textarea
-            className="bg-transparent min-h-48"
+            className="min-h-48 bg-transparent"
             placeholder="Enter a tweet"
             {...register("content")}
           />
@@ -107,17 +107,17 @@ export default function AddTweet({ toggleShowInput }: Props) {
           height={200}
         />
       )}
-      <section className="flex justify-between fixed bottom-24 max-w-xl w-full pr-16">
+      <section className="fixed bottom-24 flex w-full max-w-xl justify-between pr-16">
         <label htmlFor="photo">
           <AiFillPicture
-            className="w-10 h-10 cursor-pointer bg-primary text-primary-foreground rounded-2xl p-1 transition hover:scale-125"
+            className="h-10 w-10 cursor-pointer rounded-2xl bg-primary p-1 text-primary-foreground transition hover:scale-125"
             onClick={() => console.log("TODO: Add image")}
           />
         </label>
         <Button
           type="submit"
           disabled={pending}
-          className="border border-black flex gap-2"
+          className="flex gap-2 border border-black"
         >
           <IoChatbubbleOutline size={24} />
           {pending ? "로딩 중" : "Post"}

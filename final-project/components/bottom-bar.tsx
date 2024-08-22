@@ -20,29 +20,29 @@ export default function BottomBar({ me }: Props) {
     setMe(me);
   }, [me, setMe]);
   return (
-    <div className="fixed bottom-0 max-w-xl w-full bg-secondary border-t border-muted-foreground flex justify-around py-3">
+    <div className="fixed bottom-0 flex w-full max-w-xl justify-around border-t border-muted-foreground bg-secondary py-3">
       <Link href="/" className="flex flex-col items-center gap-px">
         {pathname === "/" ? (
-          <BsPostcardHeartFill className="w-7 h-7" />
+          <BsPostcardHeartFill className="h-7 w-7" />
         ) : (
-          <BsPostcardHeart className="w-7 h-7" />
+          <BsPostcardHeart className="h-7 w-7" />
         )}
         <p className="text-xs">Tweets</p>
       </Link>
 
       <Link href="/dm" className="flex flex-col items-center gap-px">
         {pathname === "/dm" ? (
-          <MdHomeWork className="w-7 h-7" />
+          <MdHomeWork className="h-7 w-7" />
         ) : (
-          <MdOutlineHomeWork className="w-7 h-7" />
+          <MdOutlineHomeWork className="h-7 w-7" />
         )}
         <p className="text-xs">DM</p>
       </Link>
       <Link href="/profile" className="flex flex-col items-center gap-px">
         {pathname === "/profile" ? (
-          <MdHomeWork className="w-7 h-7" />
+          <MdHomeWork className="h-7 w-7" />
         ) : (
-          <MdOutlineHomeWork className="w-7 h-7" />
+          <MdOutlineHomeWork className="h-7 w-7" />
         )}
         <p className="text-xs">{me.username}</p>
       </Link>

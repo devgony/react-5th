@@ -10,13 +10,13 @@ export default function Login() {
   return (
     <form
       action={dispatch}
-      className="flex flex-col w-full gap-3 justify-center h-screen"
+      className="flex h-screen w-full flex-col justify-center gap-3"
     >
-      <h1 className="text-xl font-bold text-center">Welcome back!</h1>
-      <p className="text-muted-foreground text-center mb-12">
+      <h1 className="text-center text-xl font-bold">Welcome back!</h1>
+      <p className="mb-12 text-center text-muted-foreground">
         We&#39;re so excited to see you again!
       </p>
-      <p className="text-muted-foreground text-sm">Account Information</p>
+      <p className="text-sm text-muted-foreground">Account Information</p>
       <Input
         name="email"
         type="email"
@@ -31,7 +31,7 @@ export default function Login() {
         required={true}
         errors={state?.fieldErrors?.password}
       />
-      <p className="text-blue-400 text-sm">Forget your password?</p>
+      <p className="text-sm text-blue-400">Forget your password?</p>
       <FormButton payload="Log in" />
     </form>
   );

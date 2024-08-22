@@ -27,7 +27,7 @@ export default function LikeButton({ count, isLiked, tweetId }: Props) {
   };
   return (
     <Button
-      className="flex gap-1 min-w-16 w-min"
+      className="flex w-min min-w-16 gap-1"
       variant={state.isLiked ? "default" : "outline"}
       onClick={onClick}
     >

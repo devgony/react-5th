@@ -22,7 +22,7 @@ export default async function Profile({
       ))}
 
       {user?.id == session?.id && (
-        <Link href={`/users/${username}/edit`} className="border-black border">
+        <Link href={`/users/${username}/edit`} className="border border-black">
           Edit profile
         </Link>
       )}

@@ -95,10 +95,10 @@ export default function Responses({ responses, tweetId }: Props) {
         />
       ))}
       <div className="my-8" />
-      <form className="flex sticky bottom-20 items-end" action={action}>
+      <form className="sticky bottom-20 flex items-end" action={action}>
         <Textarea
           ref={textareaRef}
-          className="w-full rounded-xl resize-none bg-secondary h-auto"
+          className="h-auto w-full resize-none rounded-xl bg-secondary"
           name="response"
           placeholder="Send a response..."
           required

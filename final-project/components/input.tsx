@@ -21,7 +21,7 @@ const _Input = (
   ref: ForwardedRef<HTMLInputElement>
 ) => {
   return (
-    <div className="flex flex-col gap-2 w-full">
+    <div className="flex w-full flex-col gap-2">
       <Input
         ref={ref}
         name={name}
@@ -30,7 +30,7 @@ const _Input = (
         {...rest}
       />
       {errors.map((error, index) => (
-        <span key={index} className="text-red-500 font-medium">
+        <span key={index} className="font-medium text-red-500">
           {error}
         </span>
       ))}
