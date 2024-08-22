@@ -1,11 +1,9 @@
-import { Tweet } from "@prisma/client";
 import Link from "next/link";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import Image from "next/image";
-import { TweetType } from "@/lib/schema";
 import { getMoreTweets, Tweets } from "@/app/actoins";
 import { useEffect, useRef, useState } from "react";
 import { formatToTimeAgo } from "@/lib/utils";
+import Avatar from "./avatar";
 
 interface Props {
   initTweets: Tweets;
@@ -55,12 +53,9 @@ export default function TweetList({ initTweets }: Props) {
           key={id}
           className="bg-secondary w-full cursor-pointer rounded-xl text-secondary-foreground p-4 flex justify-between h-48"
         >
-          <section className="w-3/4 flex flex-col gap-2 justify-center">
+          <section className="w-3/4 flex flex-col gap-2">
             <span className="flex gap-2 items-center">
-              <Avatar className="size-12">
-                <AvatarImage src="https://github.com/devgony.png" />
-                <AvatarFallback>avatar</AvatarFallback>
-              </Avatar>
+              <Avatar username={username} />
               <p className="text-blue-400">{username}</p>
               <p className="text-xs text-muted-foreground">
                 {formatToTimeAgo(updated_at.toString())}

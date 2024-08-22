@@ -3,6 +3,7 @@
 import { MdThumbUp, MdOutlineThumbUp } from "react-icons/md";
 import { dislikeTweet, likeTweet } from "../app/tweets/[id]/actions";
 import { startTransition, useOptimistic } from "react";
+import { Button } from "./ui/button";
 
 interface Props {
   count: number;
@@ -18,20 +19,20 @@ export default function LikeButton({ count, isLiked, tweetId }: Props) {
     })
   );
   const onClick = async () => {
+    console.log("clicked");
     startTransition(() => {
       reducerFn(undefined);
     });
     state.isLiked ? await dislikeTweet(tweetId) : await likeTweet(tweetId);
   };
   return (
-    <div
-      className={`${
-        state.isLiked ? "bg-orange-300" : ""
-      } w-24 flex justify-center items-center cursor-pointer border-black border-2 gap-2`}
-      onChange={onClick}
+    <Button
+      className="flex gap-1 min-w-16 w-min"
+      variant={state.isLiked ? "default" : "outline"}
+      onClick={onClick}
     >
       {state.isLiked ? <MdThumbUp /> : <MdOutlineThumbUp />}
       <p>{state.count}</p>
-    </div>
+    </Button>
   );
 }

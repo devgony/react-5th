@@ -1,10 +1,13 @@
 "use client";
-import { useOptimistic, useRef } from "react";
+import { useEffect, useOptimistic, useRef, useState } from "react";
 import { useFormState } from "react-dom";
 import { createResponse, ResponsesType } from "../app/tweets/[id]/actions";
 import FormButton from "./form-button";
 import Input from "./input";
 import { z } from "zod";
+import { Textarea } from "./ui/textarea";
+import { useForm } from "react-hook-form";
+import { text } from "stream/consumers";
 
 interface Props {
   responses: ResponsesType;
@@ -49,25 +52,48 @@ export default function Responses({ responses, tweetId }: Props) {
       createResponse(prevState, formData, tweetId),
     null
   );
+
+  const [value, setValue] = useState("");
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    const scrollHeight = textareaRef.current?.scrollHeight;
+    console.log(scrollHeight);
+    if (scrollHeight && scrollHeight > 400) {
+      return;
+    }
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto";
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+    }
+  }, [value]);
+
+  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setValue(event.target.value);
+  };
+
   return (
-    <div>
-      <h1 className="text-xl font-bold">Responses</h1>
+    <>
       {state.responses.map((r, i) => (
         <div key={i} className="flex gap-2">
           <p>by {r.userId}:</p>
           <p>{r.payload}</p>
         </div>
       ))}
-      <form className="w-fit" action={action}>
-        <Input
-          type="text"
+      <form className="flex sticky bottom-20 items-end" action={action}>
+        <Textarea
+          ref={textareaRef}
+          className="w-full rounded-xl resize-none bg-secondary h-auto"
           name="response"
-          placeholder="response"
+          placeholder="Send a response..."
           required
-          errors={formState?.formErrors}
+          value={value}
+          onChange={handleChange}
+          rows={1}
+          // errors={formState?.formErrors}
         />
-        <FormButton payload="Save response" />
+        <FormButton payload="Send" />
       </form>
-    </div>
+    </>
   );
 }

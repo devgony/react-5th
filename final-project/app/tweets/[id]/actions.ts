@@ -8,6 +8,13 @@ import { Prisma } from "@prisma/client";
 export default async function getTweet(id: number) {
   return db.tweet.findUnique({
     where: { id },
+    include: {
+      user: {
+        select: {
+          username: true,
+        },
+      },
+    },
   });
 }
 
