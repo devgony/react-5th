@@ -3,7 +3,6 @@ import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "next-themes";
-import getSession from "@/lib/session";
 import BottomBar from "@/components/bottom-bar";
 import RecoilRootWrapper from "@/components/recoil-root-wrapper";
 import { getMe } from "./actoins";
@@ -32,7 +31,7 @@ export default async function RootLayout({
           "bg-yellow-900"
         )}
       >
-        <div className="max-w-xl mx-auto bg-background h-screen overflow-hidden">
+        <div className="max-w-xl mx-auto bg-background min-h-screen">
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"

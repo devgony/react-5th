@@ -9,7 +9,29 @@ import { z } from "zod";
 export default async function getTweets(page: number) {
   const tweets = await db.tweet.findMany({
     // skip: page * 1,
-    // take: 1,
+    take: 1,
+    include: {
+      user: {
+        select: {
+          username: true,
+        },
+      },
+    },
+    orderBy: {
+      updated_at: "desc",
+    },
+  });
+  const total = await db.tweet.count();
+
+  return { tweets, total };
+}
+
+export type Tweets = Prisma.PromiseReturnType<typeof getTweets>["tweets"];
+
+export async function getMoreTweets(page: number) {
+  const tweets = await db.tweet.findMany({
+    skip: page * 1,
+    take: 1,
     include: {
       user: {
         select: {
@@ -21,12 +43,9 @@ export default async function getTweets(page: number) {
       created_at: "desc",
     },
   });
-  const total = await db.tweet.count();
 
-  return { tweets, total };
+  return tweets;
 }
-
-export type Tweets = Prisma.PromiseReturnType<typeof getTweets>["tweets"];
 
 export async function addTweet(formData: FormData) {
   const fdata = {
