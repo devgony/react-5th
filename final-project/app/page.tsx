@@ -1,5 +1,5 @@
 "use client";
-import getTweets, { Tweets } from "./actoins";
+import getTweets, { Tweets } from "./actions";
 import { useEffect, useState } from "react";
 import AddTweet from "../components/add-tweet";
 import { BsPostcardHeart } from "react-icons/bs";
@@ -25,7 +25,7 @@ export default function Home() {
   };
   return (
     <>
-      <main className="flex min-h-screen flex-col gap-2">
+      <main className="flex min-h-screen flex-col gap-2 p-4">
         {showInput && <AddTweet toggleShowInput={toggleShowInput} />}
         <header className="flex items-center justify-between">
           <span className="flex items-center gap-2">

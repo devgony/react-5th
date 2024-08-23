@@ -1,24 +1,25 @@
 "use server";
 import db from "@/lib/db";
+import { editUserSchema } from "@/lib/schema";
 import { User } from "@prisma/client";
 import { revalidatePath, unstable_cache } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
 export const editUser = async (formData: FormData, prevUser: User) => {
-  const schema = z.object({
-    email: z.string().email(),
-    username: z.string(),
-    bio: z.string(),
-  });
+  console.log("editUser");
+  console.log("photo", formData.get("photo"));
+
   const fData = {
     email: formData.get("email"),
     username: formData.get("username"),
     bio: formData.get("bio"),
+    photo: formData.get("photo"),
   };
-  const { success, error, data } = schema.safeParse(fData);
+  const { success, error, data } = editUserSchema.safeParse(fData);
 
   if (!success || !data) {
+    console.log("error", error);
     return error.flatten();
   }
 

@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { ThemeProvider } from "next-themes";
 import BottomBar from "@/components/bottom-bar";
 import RecoilRootWrapper from "@/components/recoil-root-wrapper";
-import { getMe } from "./actoins";
+import { getMe } from "./actions";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -39,7 +39,7 @@ export default async function RootLayout({
             // disableTransitionOnChange
           >
             <RecoilRootWrapper>
-              <div className="p-4">{children}</div>
+              {children}
               {me && <BottomBar me={me} />}
             </RecoilRootWrapper>
           </ThemeProvider>

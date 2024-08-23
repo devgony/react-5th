@@ -1,9 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getMoreTweets, Tweets } from "@/app/actoins";
 import { useEffect, useRef, useState } from "react";
 import { formatToTimeAgo } from "@/lib/utils";
 import Avatar from "./avatar";
+import { getMoreTweets, Tweets } from "@/app/actions";
 
 interface Props {
   initTweets: Tweets;

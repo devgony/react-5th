@@ -1,5 +1,5 @@
 "use client";
-import { addTweet } from "../app/actoins";
+import { addTweet } from "../app/actions";
 import { useFormState, useFormStatus } from "react-dom";
 import Input from "./input";
 import { useRecoilValue } from "recoil";
@@ -125,7 +125,13 @@ export default function AddTweet({ toggleShowInput }: Props) {
       </section>
       <input
         onChange={(event) =>
-          onImageChange(event, setPreview, setFile, setUploadUrl, setValue)
+          onImageChange<keyof TweetType>(
+            event,
+            setPreview,
+            setFile,
+            setUploadUrl,
+            setValue
+          )
         }
         type="file"
         id="photo"

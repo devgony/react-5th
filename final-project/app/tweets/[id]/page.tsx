@@ -26,7 +26,7 @@ export default async function Tweet({ params }: { params: { id: string } }) {
   const responses = await getResponsesCached(tweetId);
   const { count, isLiked } = await getLikesCached(tweetId);
   return (
-    <div className="flex min-h-screen flex-col gap-2">
+    <div className="flex min-h-screen flex-col gap-2 p-4">
       <header className="flex items-center gap-4 border-b py-3">
         {/* TODO: it should be go back, with client component */}
         <Link href="/">

@@ -19,3 +19,12 @@ export const tweetSchema = z.object({
 });
 
 export type TweetType = z.infer<typeof tweetSchema>;
+
+export const editUserSchema = z.object({
+  email: z.string().email(),
+  username: z.string(),
+  bio: z.string(),
+  photo: z.string().nullish(),
+});
+
+export type EditUserType = z.infer<typeof editUserSchema>;

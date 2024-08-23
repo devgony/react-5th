@@ -19,6 +19,7 @@ model User {
   password   String
   email      String     @unique
   bio        String?
+  photo      String?
   created_at DateTime   @default(now())
   updated_at DateTime   @updatedAt
   Tweet      Tweet[]

@@ -6,12 +6,13 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const onImageChange = async (
+export const onImageChange = async <T extends string>(
   event: React.ChangeEvent<HTMLInputElement>,
   setPreview: (url: string) => void,
   setFile: (file: File) => void,
   setUploadUrl: (url: string) => void,
-  setValue: (name: "photo" | "title" | "content", value: string) => void
+  setValue: (name: T, value: string) => void
+  // setValue: (name: "photo" | "title" | "content", value: string) => void
 ) => {
   const {
     target: { files },
@@ -39,7 +40,10 @@ export const onImageChange = async (
   if (success) {
     const { id, uploadURL } = result;
     setUploadUrl(uploadURL);
-    setValue("photo", `${process.env.NEXT_PUBLIC_CLOUDFLARE_IMAGE_URL}/${id}`);
+    setValue(
+      "photo" as T,
+      `${process.env.NEXT_PUBLIC_CLOUDFLARE_IMAGE_URL}/${id}/public`
+    );
   }
 };
 

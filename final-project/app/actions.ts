@@ -79,9 +79,9 @@ export async function addTweet(formData: FormData) {
 
 export async function getMe() {
   const session = await getSession();
-  if (!session) {
+  if (!session.id) {
     console.error("No session found");
-    notFound();
+    return;
   }
 
   const user = await db.user.findUnique({
