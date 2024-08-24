@@ -128,66 +128,81 @@ export default function ChatMessagesList({
     };
   }, [chatRoomId, userId]);
   const router = useRouter();
+
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
   return (
-    <div className="p-5 pb-24 flex flex-col gap-5 min-h-screen justify-end bg-secondary mx-2 rounded-2xl">
-      <IoMdArrowRoundBack
-        size={28}
-        className="fixed top-5 size-10 cursor-pointer z-50"
-        onClick={() => {
-          router.back();
-        }}
-      />
-      {messages.map((message) => (
-        <div
-          key={message.id}
-          className={`flex gap-2 items-start ${
-            message.userId === userId ? "justify-end" : ""
-          }`}
-        >
-          {message.userId === userId ? null : (
-            <Avatar
-              src={message.user.photo ?? ""}
-              username={message.user.username}
-            />
-          )}
+    <div className="pt-2">
+      <div className="p-4 pb-36 flex flex-col gap-5 min-h-screen justify-end bg-secondary mx-2 rounded-2xl">
+        <IoMdArrowRoundBack
+          size={28}
+          className="fixed top-5 size-10 cursor-pointer z-50"
+          onClick={() => {
+            router.back();
+          }}
+        />
+        {messages.map((message) => (
           <div
-            className={`flex flex-col gap-1 ${
-              message.userId === userId ? "items-end" : ""
+            key={message.id}
+            className={`flex gap-2 items-start ${
+              message.userId === userId ? "justify-end" : ""
             }`}
           >
-            <section className="flex gap-2 items-center">
-              {!message.read && message.userId === userId && (
-                <p className="text-xs font-bold text-yellow-300">1</p>
-              )}
-              <span
-                className={`${
-                  message.userId === userId ? "bg-third" : "bg-primary"
-                } p-2.5 rounded-md`}
-              >
-                {message.payload}
-              </span>
-              {!message.read &&
-                message.userId !== userId && ( // TODO: can be merged with the my-message case?
+            {message.userId === userId ? null : (
+              <Avatar
+                src={message.user.photo ?? ""}
+                username={message.user.username}
+              />
+            )}
+            <div
+              className={`flex flex-col gap-1 ${
+                message.userId === userId ? "items-end" : ""
+              }`}
+            >
+              <section className="flex gap-2 items-center">
+                {!message.read && message.userId === userId && (
                   <p className="text-xs font-bold text-yellow-300">1</p>
                 )}
-            </section>
-            <span className="text-xs">
-              {formatToTimeAgo(message.created_at.toString())}
-            </span>
+                <span
+                  className={`${
+                    message.userId === userId ? "bg-third" : "bg-primary"
+                  } p-2.5 rounded-md`}
+                >
+                  {message.payload}
+                </span>
+                {!message.read &&
+                  message.userId !== userId && ( // TODO: can be merged with the my-message case?
+                    <p className="text-xs font-bold text-yellow-300">1</p>
+                  )}
+              </section>
+              <span className="text-xs">
+                {formatToTimeAgo(message.created_at.toString())}
+              </span>
+            </div>
           </div>
-        </div>
-      ))}
-      <form className="flex relative" onSubmit={onSubmit}>
+        ))}
+        <div ref={messagesEndRef} />
+      </div>
+      <form
+        className="flex fixed bottom-24 w-full max-w-xl px-4 items-center"
+        onSubmit={onSubmit}
+      >
         <Input
           required
           onChange={onChange}
           value={message}
-          className="rounded-full w-full h-10 px-5 transition"
+          className="rounded-full h-12 px-5 transition"
           type="text"
           name="message"
           placeholder="Write a message..."
         />
-        <button className="absolute right-0">
+        <button className="absolute right-5">
           <FaCircleArrowUp className="size-10 transition-colors hover:text-primary" />
         </button>
       </form>
