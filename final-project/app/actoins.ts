@@ -1,7 +1,9 @@
 "use server";
 import db from "@/lib/db";
+import { tweetSchema } from "@/lib/schema";
 import getSession from "@/lib/session";
 import { Prisma } from "@prisma/client";
+import { notFound } from "next/navigation";
 import { z } from "zod";
 
 export default async function getTweets(page: number) {
@@ -26,14 +28,16 @@ export default async function getTweets(page: number) {
 
 export type Tweets = Prisma.PromiseReturnType<typeof getTweets>["tweets"];
 
-export async function addTweet(prevState: any, formData: FormData) {
-  const formSchema = z
-    .string()
-    .refine((t) => !t.includes("wrong"), "remove keyword: 'wrong'");
-  const data = formData.get("tweet");
-  const { success, error, data: tweet } = formSchema.safeParse(data);
+export async function addTweet(formData: FormData) {
+  const fdata = {
+    title: formData.get("title"),
+    content: formData.get("content"),
+    photo: formData.get("photo"),
+  };
+  const { success, error, data } = tweetSchema.safeParse(fdata);
+  console.log("formData", success, error, data);
 
-  if (!success || !tweet) {
+  if (!success || !data) {
     return error?.flatten();
   }
 
@@ -48,8 +52,24 @@ export async function addTweet(prevState: any, formData: FormData) {
 
   await db.tweet.create({
     data: {
-      tweet,
+      ...data,
       userId,
     },
   });
+}
+
+export async function getMe() {
+  const session = await getSession();
+  if (!session) {
+    console.error("No session found");
+    notFound();
+  }
+
+  const user = await db.user.findUnique({
+    where: {
+      id: session.id,
+    },
+  });
+
+  return user;
 }

@@ -5,9 +5,20 @@ import { usePathname } from "next/navigation";
 import { MdOutlineHomeWork, MdHomeWork } from "react-icons/md";
 import { ModeToggle } from "./mode-toggle";
 import { BsPostcardHeart, BsPostcardHeartFill } from "react-icons/bs";
+import { User } from "@prisma/client";
+import { meState } from "@/lib/atoms";
+import { useRecoilState } from "recoil";
+import { useEffect } from "react";
 
-export default function BottomBar() {
+interface Props {
+  me: User;
+}
+export default function BottomBar({ me }: Props) {
   const pathname = usePathname();
+  const [_, setMe] = useRecoilState(meState);
+  useEffect(() => {
+    setMe(me);
+  }, [me, setMe]);
   return (
     <div className="fixed bottom-0 max-w-xl w-full bg-secondary border-t border-muted-foreground flex justify-around py-3">
       <Link href="/" className="flex flex-col items-center gap-px">
@@ -33,7 +44,7 @@ export default function BottomBar() {
         ) : (
           <MdOutlineHomeWork className="w-7 h-7" />
         )}
-        <p className="text-xs">Profile</p>
+        <p className="text-xs">{me.username}</p>
       </Link>
 
       <ModeToggle />

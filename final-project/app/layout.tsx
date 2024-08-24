@@ -5,6 +5,8 @@ import { cn } from "@/lib/utils";
 import { ThemeProvider } from "next-themes";
 import getSession from "@/lib/session";
 import BottomBar from "@/components/bottom-bar";
+import RecoilRootWrapper from "@/components/recoil-root-wrapper";
+import { getMe } from "./actoins";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -20,9 +22,9 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getSession();
+  const me = await getMe();
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
@@ -34,11 +36,13 @@ export default async function RootLayout({
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
+            // enableSystem
+            // disableTransitionOnChange
           >
-            <div className="p-4">{children}</div>
-            {session.id && <BottomBar />}
+            <RecoilRootWrapper>
+              <div className="p-4">{children}</div>
+              {me && <BottomBar me={me} />}
+            </RecoilRootWrapper>
           </ThemeProvider>
         </div>
       </body>
