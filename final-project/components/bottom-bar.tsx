@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import { cn } from "@/lib/utils";
 import path from "path";
 import Avatar from "./avatar";
+import { PiUsersFill, PiUsers } from "react-icons/pi";
 
 interface Props {
   me: User;
@@ -33,6 +34,15 @@ export default function BottomBar({ me }: Props) {
         <p className="text-xs">Tweets</p>
       </Link>
 
+      <Link href="/users" className="flex flex-col items-center gap-px">
+        {pathname === "/users" ? (
+          <PiUsersFill className="h-7 w-7" />
+        ) : (
+          <PiUsers className="h-7 w-7" />
+        )}
+        <p className="text-xs">Users</p>
+      </Link>
+
       <Link href="/dm" className="flex flex-col items-center gap-px">
         {pathname === "/dm" ? (
           <MdHomeWork className="h-7 w-7" />
@@ -41,6 +51,7 @@ export default function BottomBar({ me }: Props) {
         )}
         <p className="text-xs">DM</p>
       </Link>
+
       <Link
         href="/profile"
         className={cn(
