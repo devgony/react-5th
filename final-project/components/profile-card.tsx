@@ -39,13 +39,13 @@ export default async function ProfileCard({ user }: Props) {
           {user?.id == session?.id && (
             <div className="flex justify-around mt-8">
               <Link href={`/users/${user.username}/edit`}>
-                <Button className="w-36">
+                <Button className="w-36 bg-third">
                   <FaPencilAlt className="mr-2" />
                   Edit Profile
                 </Button>
               </Link>
               <form action={logOut} className="w-36">
-                <Button className="w-full">
+                <Button className="w-full bg-third">
                   <RiLogoutBoxRLine className="mr-2" size={20} />
                   Logout
                 </Button>
