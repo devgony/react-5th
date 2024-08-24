@@ -20,9 +20,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { editUserSchema, EditUserType } from "@/lib/schema";
 import Link from "next/link";
+import { ChangePasswordDialog } from "@/components/change-password-dialog";
 
 export default function EditProfile({ params: { username } }: UsernameParams) {
-  // const [user, setUser] = useState<User>();
   const {
     register,
     handleSubmit,
@@ -93,15 +93,11 @@ export default function EditProfile({ params: { username } }: UsernameParams) {
     await onSubmit();
   };
 
-  const [showChangePassword, setShowChangePassword] = useState(false);
-
-  const handleChangePasswordClick = () => {
-    setShowChangePassword(true);
-  };
+  const [open, setOpen] = useState(false);
 
   return (
     <form action={action} className="bg-secondary min-h-screen">
-      <div className="flex justify-between items-center py-1">
+      <div className="flex justify-between items-center py-1 ">
         <IoClose
           onClick={() => history.back()}
           size={36}
@@ -170,12 +166,13 @@ export default function EditProfile({ params: { username } }: UsernameParams) {
           color="none"
           errors={[errors.username?.message ?? ""]}
         />
-        <Link href={`/users/${username}/edit/change-password`}>
-          <Button className="bg-secondary text-secondary-foreground flex justify-between w-full">
+        {prevUser && <ChangePasswordDialog userId={prevUser?.id} />}
+        {/* <Link href={`/users/${username}/edit/change-password`}> */}
+        {/* <Button className="bg-secondary text-secondary-foreground flex justify-between w-full">
             Change Password
             <FaChevronRight className="text-secondary-foreground" />
-          </Button>
-        </Link>
+          </Button> */}
+        {/* </Link> */}
         <Label htmlFor="bio" className="text-xs text-muted-foreground">
           About me
         </Label>

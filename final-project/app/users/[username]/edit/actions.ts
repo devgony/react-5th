@@ -1,6 +1,6 @@
 "use server";
 import db from "@/lib/db";
-import { editUserSchema, EditUserType } from "@/lib/schema";
+import { editUserSchema, EditUserType, passwordSchema } from "@/lib/schema";
 import { User } from "@prisma/client";
 import { revalidatePath, unstable_cache } from "next/cache";
 import { redirect } from "next/navigation";
@@ -53,3 +53,27 @@ export const editUserCached = (formData: FormData, prevUser: User) =>
   unstable_cache(editUser, ["edit-user"], {
     tags: [`edit-user-${formData.get("username")}`],
   })(formData, prevUser);
+
+export const changePassword = async (formData: FormData, userId: number) => {
+  const password = formData.get("password");
+  const confirm = formData.get("confirm");
+
+  const d = {
+    password,
+    confirm,
+  };
+
+  const { success, error, data } = passwordSchema.safeParse(d);
+
+  if (!success || !data) {
+    return error.flatten();
+  }
+
+  const hashedPassword = await bcrypt.hash(data.password, 10);
+  await db.user.update({
+    data: { password: hashedPassword },
+    where: {
+      id: userId,
+    },
+  });
+};
