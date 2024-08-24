@@ -25,8 +25,7 @@ model User {
   Tweet         Tweet[]
   Like          Like[]
   Response      Response[]
-  ChatRoom      ChatRoom?       @relation(fields: [chatRoomId], references: [id])
-  chatRoomId    String?
+  ChatRoom      ChatRoom[]
   Message       Message[]
   MessageReadBy MessageReadBy[]
 }

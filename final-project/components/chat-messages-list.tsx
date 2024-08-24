@@ -138,7 +138,7 @@ export default function ChatMessagesList({
   }, [messages]);
 
   return (
-    <div className="pt-2">
+    <div className="">
       <div className="p-4 pb-36 flex flex-col gap-5 min-h-screen justify-end bg-secondary mx-2 rounded-2xl">
         <IoMdArrowRoundBack
           size={28}
