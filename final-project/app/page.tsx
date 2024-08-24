@@ -15,7 +15,7 @@ export default async function Home() {
           <h1 className="text-lg font-bold">Tweets</h1>
         </span>
         <Link href="/search">
-          <IoSearch className="h-10 w-10" />
+          <IoSearch size={36} />
         </Link>
       </header>
       {/* TODO: Select Sort & View */}

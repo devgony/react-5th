@@ -1,8 +1,10 @@
 "use server";
 import db from "@/lib/db";
+import getSession from "@/lib/session";
 import { redirect } from "next/navigation";
 
 export const searchUsers = async (keyword: string) => {
+  const session = await getSession();
   return db.user.findMany({
     where: {
       OR: [
@@ -18,6 +20,11 @@ export const searchUsers = async (keyword: string) => {
           },
         },
       ],
+      AND: {
+        NOT: {
+          id: session.id,
+        },
+      },
     },
   });
 };

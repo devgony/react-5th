@@ -17,6 +17,7 @@ export default async function getTweet(id: number) {
     },
   });
 }
+export type GetTweet = Prisma.PromiseReturnType<typeof getTweet>;
 
 export async function getResponses(tweetId: number) {
   return db.response.findMany({

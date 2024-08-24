@@ -29,7 +29,7 @@ export default async function Users({ searchParams }: Props) {
       <form className="flex gap-2" action={revalidateSearchUsers}>
         <Input
           className="bg-background"
-          placeholder="Put a keyword for username or email and hit Search button"
+          placeholder="Put username or email and hit button"
           name="keyword"
           type="text"
           required={false}

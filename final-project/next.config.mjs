@@ -16,6 +16,12 @@ const nextConfig = {
       },
     ],
   },
+  // rewrites: async () => [
+  //   {
+  //     source: "/search",
+  //     destination: "/@modal/(...)search",
+  //   },
+  // ],
 };
 
 export default nextConfig;

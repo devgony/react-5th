@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import { Tweets } from "../actions";
 import { Button } from "@/components/ui/button";
 import TweetList from "@/components/tweet-list";
+import GoBack from "@/components/go-back";
 
 export default function Search() {
   // const [state, dispatch] = useFormState(searchTweets, null);
@@ -23,7 +24,8 @@ export default function Search() {
   }, [keyword]);
   return (
     <div className="bg-third w-full h-screen p-2 overflow-y-scroll">
-      <div className="flex">
+      <div className="flex gap-2 items-center pr-8">
+        <GoBack variant="arrow" />
         <Input
           className="bg-background"
           placeholder="Search"
@@ -33,9 +35,6 @@ export default function Search() {
           onChange={(e) => setKeyword(e.target.value)}
           required={false}
         />
-        <a href="/">
-          <Button variant="ghost">Cancel</Button>
-        </a>
       </div>
       <TweetList tweets={tweets} />
     </div>

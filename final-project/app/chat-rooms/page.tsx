@@ -7,6 +7,7 @@ import LastMessage from "@/components/last-message";
 import UnreadCount from "@/components/unread-count";
 import getSession from "@/lib/session";
 import { notFound } from "next/navigation";
+import FormButton from "@/components/form-button";
 import { Button } from "@/components/ui/button";
 
 export default async function ChatRooms() {
@@ -33,11 +34,6 @@ export default async function ChatRooms() {
               }}
             >
               <section className="flex gap-2 items-center">
-                {/* <img
-                  src={chatRoom.avatar ?? "/avatar.png"}
-                  alt="avatar"
-                  className="w-12 h-12 rounded-full"
-                /> */}
                 <Avatar src={chatRoom.photo} username={chatRoom.username} />
                 <span>
                   <div className="flex gap-4">
@@ -63,14 +59,19 @@ export default async function ChatRooms() {
                   userId={session.id!} // TODO: why undefined?
                 />
                 <span className="w-24">
-                  <Button>Delete</Button>
+                  <FormButton payload="Delete" />
                 </span>
               </span>
             </form>
           </Link>
         ))
       ) : (
-        <p>No chat rooms</p>
+        <>
+          <p>No chat rooms..</p>
+          <Link href="/users">
+            <Button>Find users to chat with</Button>
+          </Link>
+        </>
       )}
     </main>
   );

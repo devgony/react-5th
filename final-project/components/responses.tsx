@@ -86,32 +86,38 @@ export default function Responses({ responses, tweetId }: Props) {
 
   return (
     <>
-      {state.responses.map(({ user: { username }, payload, created_at }, i) => (
-        <Article
-          key={`response-${i}`}
-          username={username}
-          content={payload}
-          updated_at={created_at}
-        />
-      ))}
+      <div className="p-4 flex flex-col gap-2 ">
+        {state.responses.map(
+          ({ user: { username }, payload, created_at }, i) => (
+            <Article
+              key={`response-${i}`}
+              username={username}
+              content={payload}
+              updated_at={created_at}
+            />
+          )
+        )}
+      </div>
       <div className="my-8" />
-      <form
-        className="fixed w-full mx-auto bottom-20 flex items-end max-w-xl -ml-4 px-2"
-        action={action}
-      >
-        <Textarea
-          ref={textareaRef}
-          className="h-auto w-full resize-none rounded-xl bg-secondary hide-scrollbar"
-          name="response"
-          placeholder="Send a response..."
-          required
-          value={value}
-          onChange={handleChange}
-          rows={1}
-          // errors={formState?.formErrors}
-        />
-        <FormButton payload="Send" />
-      </form>
+      <div className="fixed w-full max-w-xl flex justify-center">
+        <form
+          className="flex items-end fixed max-w-xl w-10/12 bottom-20 mx-auto gap-px"
+          action={action}
+        >
+          <Textarea
+            ref={textareaRef}
+            className="h-auto w-full resize-none rounded-xl bg-secondary hide-scrollbar"
+            name="response"
+            placeholder="Send a response..."
+            required
+            value={value}
+            onChange={handleChange}
+            rows={1}
+            // errors={formState?.formErrors}
+          />
+          <FormButton payload="Send" />
+        </form>
+      </div>
     </>
   );
 }
