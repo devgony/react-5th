@@ -19,6 +19,7 @@ import { onImageChange } from "@/lib/utils";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { editUserSchema, EditUserType } from "@/lib/schema";
+import Link from "next/link";
 
 export default function EditProfile({ params: { username } }: UsernameParams) {
   // const [user, setUser] = useState<User>();
@@ -92,6 +93,12 @@ export default function EditProfile({ params: { username } }: UsernameParams) {
     await onSubmit();
   };
 
+  const [showChangePassword, setShowChangePassword] = useState(false);
+
+  const handleChangePasswordClick = () => {
+    setShowChangePassword(true);
+  };
+
   return (
     <form action={action} className="bg-secondary min-h-screen">
       <div className="flex justify-between items-center py-1">
@@ -163,10 +170,12 @@ export default function EditProfile({ params: { username } }: UsernameParams) {
           color="none"
           errors={[errors.username?.message ?? ""]}
         />
-        <Button className="bg-secondary text-secondary-foreground flex justify-between">
-          Change Password
-          <FaChevronRight className="text-secondary-foreground" />
-        </Button>
+        <Link href={`/users/${username}/edit/change-password`}>
+          <Button className="bg-secondary text-secondary-foreground flex justify-between w-full">
+            Change Password
+            <FaChevronRight className="text-secondary-foreground" />
+          </Button>
+        </Link>
         <Label htmlFor="bio" className="text-xs text-muted-foreground">
           About me
         </Label>

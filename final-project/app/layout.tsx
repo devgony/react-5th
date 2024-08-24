@@ -6,6 +6,7 @@ import { ThemeProvider } from "next-themes";
 import BottomBar from "@/components/bottom-bar";
 import RecoilRootWrapper from "@/components/recoil-root-wrapper";
 import { getMe } from "./actions";
+import { EaseInBottom } from "@/components/framer/ease-in-bottom";
 
 const fontSans = FontSans({
   subsets: ["latin"],

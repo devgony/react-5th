@@ -90,6 +90,21 @@ const config = {
         ".hide-scrollbar::-webkit-scrollbar": {
           display: "none" /* For Chrome, Safari, and Opera */,
         },
+        ".change-password-container": {
+          position: "fixed",
+          top: "0",
+          right: "0",
+          width: "100%",
+          "max-width": "400px",
+          height: "100%",
+          background: "white",
+          "box-shadow": "-2px 0 5px rgba(0, 0, 0, 0.1)",
+          transform: "translateX(100%)",
+          transition: "transform 0.3s ease-in-out",
+        },
+        ".change-password-container.show": {
+          transform: "translateX(0)",
+        },
       });
     }),
   ],
