@@ -11,35 +11,13 @@ import { Tweet } from "@prisma/client";
 import { TweetType } from "@/lib/schema";
 import { Tweets } from "@/app/actions";
 import TweetList from "@/components/tweet-list";
+import Search from "@/app/search/page";
 
 export default function SearchModal() {
-  const [tweets, setTweets] = useState<Tweets>([]);
-  const [keyword, setKeyword] = useState("");
-  useEffect(() => {
-    searchTweets(keyword).then((tweets) => {
-      setTweets(tweets);
-    });
-  }, [keyword]);
   return (
-    <div className="absolute top-0 pl-10 max-w-xl w-full">
+    <div className="fixed top-0 pl-10 max-w-xl w-full">
       <SlideInRight>
-        <div className="bg-third w-full h-screen p-2 overflow-y-scroll">
-          <div className="flex">
-            <Input
-              className="bg-background"
-              placeholder="Search"
-              name="keyword"
-              type="text"
-              value={keyword}
-              onChange={(e) => setKeyword(e.target.value)}
-              required={false}
-            />
-            <a href="/">
-              <Button variant="ghost">Cancel</Button>
-            </a>
-          </div>
-          <TweetList tweets={tweets} />
-        </div>
+        <Search />
       </SlideInRight>
     </div>
   );

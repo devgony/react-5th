@@ -45,7 +45,6 @@ export default async function RootLayout({
             <RecoilRootWrapper>
               {children}
               {modal}
-              <SearchModal />
               {me && <BottomBar me={me} />}
             </RecoilRootWrapper>
           </ThemeProvider>

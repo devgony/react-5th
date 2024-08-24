@@ -1,10 +1,6 @@
-import { RiLogoutBoxRLine } from "react-icons/ri";
-import { FaPencilAlt } from "react-icons/fa";
-import Avatar from "@/components/avatar";
-import { Button } from "@/components/ui/button";
 import db from "@/lib/db";
 import getSession from "@/lib/session";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import ProfileCard from "@/components/profile-card";
 
 export async function getUser() {
