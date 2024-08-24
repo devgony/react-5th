@@ -1,53 +1,16 @@
-"use client";
+import { Tweets } from "@/app/actions";
 import Link from "next/link";
-import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-import { formatToTimeAgo } from "@/lib/utils";
+import { useState } from "react";
 import Avatar from "./avatar";
-import { getMoreTweets, Tweets } from "@/app/actions";
+import { formatToTimeAgo } from "@/lib/utils";
+import Image from "next/image";
 
 interface Props {
-  initTweets: Tweets;
+  tweets: Tweets;
 }
-export default function TweetList({ initTweets }: Props) {
-  const [tweets, setTweets] = useState(initTweets);
-  const [isLoading, setIsLoading] = useState(false);
-  const [page, setPage] = useState(0);
-  const [isLastPage, setIsLastPage] = useState(false);
-  const trigger = useRef<HTMLSpanElement>(null);
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      async (
-        entries: IntersectionObserverEntry[],
-        observer: IntersectionObserver
-      ) => {
-        const element = entries[0];
-        if (element.isIntersecting && trigger.current) {
-          observer.unobserve(trigger.current);
-          setIsLoading(true);
-          const newProducts = await getMoreTweets(page + 1);
-          if (newProducts.length !== 0) {
-            setTweets((prev) => [...prev, ...newProducts]);
-            setPage((prev) => prev + 1);
-          } else {
-            setIsLastPage(true);
-          }
-          setIsLoading(false);
-        }
-      },
-      {
-        threshold: 1.0,
-      }
-    );
-    if (trigger.current) {
-      observer.observe(trigger.current);
-    }
-    return () => {
-      observer.disconnect();
-    };
-  }, [page]);
+export default function TweetList({ tweets }: Props) {
   return (
-    <>
+    <div className="flex flex-col gap-2 my-2">
       {tweets?.map(
         ({
           user: { username, photo: profilePhoto },
@@ -88,14 +51,6 @@ export default function TweetList({ initTweets }: Props) {
           </Link>
         )
       )}
-      {!isLastPage ? (
-        <span
-          ref={trigger}
-          className="mx-auto w-fit rounded-md bg-primary px-3 py-2 text-sm font-semibold hover:opacity-90 active:scale-95"
-        >
-          {isLoading ? "로딩 중" : "Load more"}
-        </span>
-      ) : null}
-    </>
+    </div>
   );
 }

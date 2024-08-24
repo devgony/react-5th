@@ -26,7 +26,7 @@ export default function Search() {
       {state?.tweets?.map((t) => {
         return (
           <div key={t.id}>
-            <div>{t.tweet}</div>
+            <div>{t.content}</div>
           </div>
         );
       })}

@@ -15,7 +15,7 @@ export const searchTweets = async (_: any, formData: FormData) => {
 
   const where = {
     where: {
-      tweet: {
+      content: {
         startsWith,
       },
     },

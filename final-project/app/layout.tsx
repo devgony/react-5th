@@ -7,6 +7,7 @@ import BottomBar from "@/components/bottom-bar";
 import RecoilRootWrapper from "@/components/recoil-root-wrapper";
 import { getMe } from "./actions";
 import { EaseInBottom } from "@/components/framer/ease-in-bottom";
+import SearchModal from "./@modal/(...)search/page";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -19,8 +20,10 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
+  modal,
 }: Readonly<{
   children: React.ReactNode;
+  modal: React.ReactNode;
 }>) {
   const me = await getMe();
   return (
@@ -41,6 +44,8 @@ export default async function RootLayout({
           >
             <RecoilRootWrapper>
               {children}
+              {modal}
+              <SearchModal />
               {me && <BottomBar me={me} />}
             </RecoilRootWrapper>
           </ThemeProvider>
