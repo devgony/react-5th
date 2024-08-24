@@ -7,12 +7,11 @@ const db = new PrismaClient({
   ],
 });
 
-if (typeof window === "undefined") {
-  db.$on("query", (e) => {
-    // console.log(`👉Query: ${e.query}`);
-    console.log(`👉Query: ${e.query}`);
-    console.log(`Params: ${e.params}\n`);
-  });
-}
+// if (typeof window === "undefined") {
+//   db.$on("query", (e) => {
+//     console.log(`👉Query: ${e.query}`);
+//     console.log(`Params: ${e.params}\n`);
+//   });
+// }
 
 export default db;

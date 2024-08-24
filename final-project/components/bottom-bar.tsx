@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { TbMessageCircle, TbMessageCircleFilled } from "react-icons/tb";
 import { usePathname } from "next/navigation";
 import { MdOutlineHomeWork, MdHomeWork } from "react-icons/md";
 import { ModeToggle } from "./mode-toggle";
@@ -43,13 +44,13 @@ export default function BottomBar({ me }: Props) {
         <p className="text-xs">Users</p>
       </Link>
 
-      <Link href="/dm" className="flex flex-col items-center gap-px">
-        {pathname === "/dm" ? (
-          <MdHomeWork className="h-7 w-7" />
+      <Link href="/chat-rooms" className="flex flex-col items-center gap-px">
+        {pathname === "/chat-rooms" ? (
+          <TbMessageCircleFilled className="h-7 w-7" />
         ) : (
-          <MdOutlineHomeWork className="h-7 w-7" />
+          <TbMessageCircle className="h-7 w-7" />
         )}
-        <p className="text-xs">DM</p>
+        <p className="text-xs">Messages</p>
       </Link>
 
       <Link

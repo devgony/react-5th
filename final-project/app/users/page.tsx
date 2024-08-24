@@ -1,3 +1,4 @@
+"use server";
 import Input from "@/components/input";
 import { PiUsersFill } from "react-icons/pi";
 import { revalidateSearchUsers, searchUsers } from "./action";
@@ -5,6 +6,7 @@ import { notFound } from "next/navigation";
 import Avatar from "@/components/avatar";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { createOrEnterChatRoom } from "../chat-rooms/actions";
 
 interface Props {
   searchParams: { [key: string]: string | string[] | undefined };
@@ -34,7 +36,7 @@ export default async function Users({ searchParams }: Props) {
         />
         <Button type="submit">Search</Button>
       </form>
-      {users.map(({ email, username, photo }) => (
+      {users.map(({ id, email, username, photo }) => (
         <article
           key={username}
           className="flex bg-third rounded-2xl p-4 justify-between"
@@ -47,9 +49,16 @@ export default async function Users({ searchParams }: Props) {
             </div>
           </span>
           <span className="flex gap-2">
-            <Link href={``}>
-              <Button variant="secondary">Message</Button>
-            </Link>
+            <form
+              action={async () => {
+                "use server";
+                return await createOrEnterChatRoom(id);
+              }}
+            >
+              <Button type="submit" variant="secondary">
+                Message
+              </Button>
+            </form>
             <Link href={`/users/${username}`}>
               <Button variant="secondary">Profile</Button>
             </Link>
