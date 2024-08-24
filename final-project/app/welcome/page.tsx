@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Welcome() {
   return (
-    <main className="flex h-screen flex-col items-center justify-center gap-4">
+    <main className="flex h-screen flex-col items-center justify-center gap-4 px-4">
       <h1 className="text-2xl font-bold">Discord</h1>
       <Image src={welcomePic} width={400} alt="Discord logo" />
       <h2 className="text-xl">Welcome to Discord</h2>

@@ -10,7 +10,7 @@ export default function Login() {
   return (
     <form
       action={dispatch}
-      className="flex h-screen w-full flex-col justify-center gap-3"
+      className="flex h-screen w-full flex-col justify-center gap-3 px-4"
     >
       <h1 className="text-center text-xl font-bold">Welcome back!</h1>
       <p className="mb-12 text-center text-muted-foreground">

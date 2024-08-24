@@ -10,7 +10,7 @@ export default function CreateAccount() {
   return (
     <form
       action={dispatch}
-      className="flex h-screen w-full flex-col justify-center gap-3"
+      className="flex h-screen w-full flex-col justify-center gap-3 px-4"
     >
       <h1 className="text-center text-xl font-bold">Enter your email</h1>
       <p className="mb-12 text-center text-muted-foreground">
