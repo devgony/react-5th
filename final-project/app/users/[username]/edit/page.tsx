@@ -1,4 +1,5 @@
 "use client";
+import { FaChevronRight } from "react-icons/fa";
 import { FaPencilAlt } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import Input from "@/components/input";
@@ -30,7 +31,6 @@ export default function EditProfile({ params: { username } }: UsernameParams) {
   } = useForm<EditUserType>({
     resolver: zodResolver(editUserSchema),
   });
-  console.log(errors);
   const [prevUser, setPrevUser] = useState<User>();
 
   // const [state, dispatch] = useFormState((_: any, formData: FormData) => {
@@ -57,7 +57,6 @@ export default function EditProfile({ params: { username } }: UsernameParams) {
   const [file, setFile] = useState<File | null>(null);
 
   const onSubmit = handleSubmit(async (data: EditUserType) => {
-    console.log("onSubmit");
     if (!prevUser) {
       console.error("no user");
       return;
@@ -90,16 +89,17 @@ export default function EditProfile({ params: { username } }: UsernameParams) {
   });
 
   const action = async () => {
-    console.log("actionx");
     await onSubmit();
   };
-
-  console.log(watch("photo"));
 
   return (
     <form action={action} className="bg-secondary min-h-screen">
       <div className="flex justify-between items-center py-1">
-        <IoClose onClick={() => history.back()} size={36} />
+        <IoClose
+          onClick={() => history.back()}
+          size={36}
+          className="cursor-pointer"
+        />
         <h1 className="text-xl font-bold">Edit Profile</h1>
         <Button type="submit" variant="ghost" className="text-primary">
           Save
@@ -107,14 +107,14 @@ export default function EditProfile({ params: { username } }: UsernameParams) {
       </div>
       <section className="h-36 bg-primary/50" />
       <label
-        className="absolute -mt-12 rounded-full bg-background p-1 z-1 ml-4 cursor-pointer"
+        className="absolute -mt-12 rounded-full bg-background p-1 z-1 ml-4 cursor-pointer  hover:scale-125 transition"
         htmlFor="photo"
       >
         <Avatar
           className="z-1"
           username={watch("username")}
           size="md"
-          src={preview ?? watch("photo") ?? ""}
+          src={preview ?? watch("photo")}
         />
         <div className="rounded-full size-6 bg-secondary absolute right-0 top-0 z-99 flex justify-center items-center">
           <FaPencilAlt className="text-muted-foreground" size={12} />
@@ -163,13 +163,17 @@ export default function EditProfile({ params: { username } }: UsernameParams) {
           color="none"
           errors={[errors.username?.message ?? ""]}
         />
+        <Button className="bg-secondary text-secondary-foreground flex justify-between">
+          Change Password
+          <FaChevronRight className="text-secondary-foreground" />
+        </Button>
         <Label htmlFor="bio" className="text-xs text-muted-foreground">
           About me
         </Label>
         <Textarea
           className="resize-none"
           {...register("bio")}
-          placeholder="bio"
+          placeholder="introduce yourself"
           required
           // value={user?.bio || ""}
           // onChange={(e) => onChange(e, "bio")}

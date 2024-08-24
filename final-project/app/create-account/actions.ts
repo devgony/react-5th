@@ -61,7 +61,10 @@ const superRefinedSchema = formSchema
   .superRefine(checkUniqueUsername)
   .superRefine(checkUniqueEmail);
 
-export default async function handleForm(prevState: any, formData: FormData) {
+export default async function createAccount(
+  prevState: any,
+  formData: FormData
+) {
   const data = {
     email: formData.get("email"),
     username: formData.get("username"),

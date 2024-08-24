@@ -29,6 +29,7 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+    overflow-y: scroll;
   }
 
   .dark {
@@ -138,4 +139,12 @@
 
 .animate-slide-up {
   animation: slide-up 0.3s ease-out;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  background-color: gray;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgb(109, 41, 217);
 }

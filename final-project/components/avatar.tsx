@@ -16,8 +16,8 @@ function hashToColor(hash: number): string {
 
 interface Props {
   username: string;
-  src?: string;
-  size?: "sm" | "md";
+  src?: string | null;
+  size?: "xs" | "sm" | "md";
   className?: string;
 }
 export default function _Avatar({
@@ -32,13 +32,25 @@ export default function _Avatar({
   const randomFgColor = `#${(0xffffff - parseInt(randomBgColor, 16)).toString(
     16
   )}`;
-  const sizeClass = size === "sm" ? "size-12" : "size-16";
+  // const sizeClass = size === "sm" ? "size-12" : "size-16";
+  const sizeClass = (() => {
+    switch (size) {
+      case "xs":
+        return "size-8";
+      case "sm":
+        return "size-12";
+      case "md":
+        return "size-16";
+      default:
+        return "size-12";
+    }
+  })();
 
-  console.log("src", src);
+  const notNullSrc = src ?? "";
 
   return (
     <Avatar className={cn(sizeClass, className)}>
-      <AvatarImage src={src} />
+      <AvatarImage src={notNullSrc} />
       <AvatarFallback
         style={{
           backgroundColor: `#${randomBgColor}`,

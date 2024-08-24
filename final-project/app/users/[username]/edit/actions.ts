@@ -1,15 +1,12 @@
 "use server";
 import db from "@/lib/db";
-import { editUserSchema } from "@/lib/schema";
+import { editUserSchema, EditUserType } from "@/lib/schema";
 import { User } from "@prisma/client";
 import { revalidatePath, unstable_cache } from "next/cache";
 import { redirect } from "next/navigation";
-import { z } from "zod";
+import bcrypt from "bcrypt";
 
 export const editUser = async (formData: FormData, prevUser: User) => {
-  console.log("editUser");
-  console.log("photo", formData.get("photo"));
-
   const fData = {
     email: formData.get("email"),
     username: formData.get("username"),
@@ -23,20 +20,33 @@ export const editUser = async (formData: FormData, prevUser: User) => {
     return error.flatten();
   }
 
+  const updatedData = await Object.entries(data).reduce(
+    async (accPromise, [key, value]) => {
+      const acc = await accPromise;
+
+      if (value && value !== prevUser[key as keyof typeof prevUser]) {
+        acc[key as keyof EditUserType] = value;
+      }
+
+      return acc;
+    },
+    Promise.resolve({} as EditUserType)
+  );
+
+  console.log("updatedData", updatedData);
+
   await db.user.update({
-    data,
+    data: updatedData,
     where: {
       id: prevUser.id,
     },
   });
 
+  revalidatePath(`/users/${data.username}/edit`);
+
   if (data.username != prevUser.username) {
-    console.log("here");
     redirect(`/users/${data.username}/edit`);
   }
-
-  console.log("there");
-  revalidatePath(`/users/${data.username}/edit`);
 };
 
 export const editUserCached = (formData: FormData, prevUser: User) =>

@@ -44,7 +44,7 @@ export default async function Tweet({ params }: { params: { id: string } }) {
       {photo && (
         <Image
           className="mx-auto"
-          src={photo + "/public"}
+          src={photo}
           alt="tweet"
           width={400}
           height={400}

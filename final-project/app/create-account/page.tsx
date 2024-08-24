@@ -1,12 +1,12 @@
 "use client";
 
 import { useFormState } from "react-dom";
-import handleForm from "./actions";
+import createAccount from "./actions";
 import Input from "../../components/input";
 import FormButton from "../../components/form-button";
 
 export default function CreateAccount() {
-  const [state, dispatch] = useFormState(handleForm, null);
+  const [state, dispatch] = useFormState(createAccount, null);
   return (
     <form
       action={dispatch}

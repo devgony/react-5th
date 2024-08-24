@@ -66,5 +66,5 @@ Unique constraint failed on the fields: (`userId`,`tweetId`)
 - [x] Implement the /users/[username] page to display the profile of a user and the Tweets the user has posted.
 - [x] If the user is the owner of the profile show a link to the /users/[username]/edit page.
 - [x] In the edit profile page the user should be able to edit the username, email, bio and change password.
-- [ ] Use Zod, Server Actions, useOptimistic and revalidatePath.
+- [x] Use Zod, Server Actions, useOptimistic and revalidatePath.
 - [ ] Deploy to Vercel and Vercel Postgres after watching this section.

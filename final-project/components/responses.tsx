@@ -88,17 +88,20 @@ export default function Responses({ responses, tweetId }: Props) {
     <>
       {state.responses.map(({ user: { username }, payload, created_at }, i) => (
         <Article
-          key={i}
+          key={`response-${i}`}
           username={username}
           content={payload}
           updated_at={created_at}
         />
       ))}
       <div className="my-8" />
-      <form className="sticky bottom-20 flex items-end" action={action}>
+      <form
+        className="fixed w-full mx-auto bottom-20 flex items-end max-w-xl -ml-4 px-2"
+        action={action}
+      >
         <Textarea
           ref={textareaRef}
-          className="h-auto w-full resize-none rounded-xl bg-secondary"
+          className="h-auto w-full resize-none rounded-xl bg-secondary hide-scrollbar"
           name="response"
           placeholder="Send a response..."
           required

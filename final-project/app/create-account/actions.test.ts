@@ -1,4 +1,4 @@
-import handleForm from "./actions";
+import createAccount from "./actions";
 import db from "@/lib/db";
 import bcrypt from "bcrypt";
 import getSession from "@/lib/session";
@@ -23,13 +23,13 @@ describe("handleForm", () => {
 
   it("should return errors if validation fails", async () => {
     formData.set("email", "invalid-email");
-    const result = await handleForm({}, formData);
+    const result = await createAccount({}, formData);
     expect(result).toHaveProperty("fieldErrors");
   });
 
   it("should return errors if username already exists", async () => {
     db.user.findUnique.mockResolvedValueOnce(mockUser);
-    const result = await handleForm({}, formData);
+    const result = await createAccount({}, formData);
     expect(result).toHaveProperty("fieldErrors.username");
   });
 
@@ -37,7 +37,7 @@ describe("handleForm", () => {
     db.user.findUnique
       .mockResolvedValueOnce(null)
       .mockResolvedValueOnce(mockUser);
-    const result = await handleForm({}, formData);
+    const result = await createAccount({}, formData);
     expect(result).toHaveProperty("fieldErrors.email");
   });
 
@@ -48,7 +48,7 @@ describe("handleForm", () => {
     const mockSession = { save: jest.fn() };
     getSession.mockResolvedValueOnce(mockSession);
 
-    await handleForm({}, formData);
+    await createAccount({}, formData);
 
     expect(db.user.create).toHaveBeenCalledWith({
       data: {

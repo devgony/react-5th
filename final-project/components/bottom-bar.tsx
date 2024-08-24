@@ -9,6 +9,9 @@ import { User } from "@prisma/client";
 import { meState } from "@/lib/atoms";
 import { useRecoilState } from "recoil";
 import { useEffect } from "react";
+import { cn } from "@/lib/utils";
+import path from "path";
+import Avatar from "./avatar";
 
 interface Props {
   me: User;
@@ -20,7 +23,7 @@ export default function BottomBar({ me }: Props) {
     setMe(me);
   }, [me, setMe]);
   return (
-    <div className="fixed bottom-0 flex w-full max-w-xl justify-around border-t border-muted-foreground bg-secondary py-3">
+    <div className="fixed bottom-0 flex w-full max-w-xl justify-around border-t border-muted-foreground bg-secondary py-3 items-center">
       <Link href="/" className="flex flex-col items-center gap-px">
         {pathname === "/" ? (
           <BsPostcardHeartFill className="h-7 w-7" />
@@ -38,13 +41,16 @@ export default function BottomBar({ me }: Props) {
         )}
         <p className="text-xs">DM</p>
       </Link>
-      <Link href="/profile" className="flex flex-col items-center gap-px">
-        {pathname === "/profile" ? (
-          <MdHomeWork className="h-7 w-7" />
-        ) : (
-          <MdOutlineHomeWork className="h-7 w-7" />
+      <Link
+        href="/profile"
+        className={cn(
+          "flex flex-col items-center gap-px",
+
+          pathname !== "/profile" && "opacity-50"
         )}
-        <p className="text-xs">{me.username}</p>
+      >
+        <Avatar src={me.photo} username={me.username} size="xs" />
+        <p className={"text-xs"}>You</p>
       </Link>
 
       <ModeToggle />

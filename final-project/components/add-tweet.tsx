@@ -4,9 +4,8 @@ import { useFormState, useFormStatus } from "react-dom";
 import Input from "./input";
 import { useRecoilValue } from "recoil";
 import { meState } from "@/lib/atoms";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Textarea } from "./ui/textarea";
-import { FaXmark } from "react-icons/fa6";
+import { FaCirclePlus, FaXmark } from "react-icons/fa6";
 import { Dispatch, SetStateAction, useState } from "react";
 import { AiFillPicture } from "react-icons/ai";
 import { IoChatbubbleOutline } from "react-icons/io5";
@@ -17,12 +16,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { tweetSchema, TweetType } from "@/lib/schema";
 import Image from "next/image";
+import Avatar from "./avatar";
 
-interface Props {
-  toggleShowInput: Dispatch<SetStateAction<boolean>>;
-}
-export default function AddTweet({ toggleShowInput }: Props) {
-  // const [state, dispatch] = useFormState(addTweet, null);
+export default function AddTweet() {
   const me = useRecoilValue(meState);
   const { pending } = useFormStatus();
   const [preview, setPreview] = useState("");
@@ -36,30 +32,47 @@ export default function AddTweet({ toggleShowInput }: Props) {
   } = useForm<TweetType>({
     resolver: zodResolver(tweetSchema),
   });
-  const onSubmit = handleSubmit(async (data: TweetType) => {
-    if (!file) {
-      return;
-    }
-    const cloudflareForm = new FormData();
-    cloudflareForm.append("file", file);
-    const response = await fetch(uploadUrl, {
-      method: "post",
-      body: cloudflareForm,
-    });
 
-    if (response.status !== 200) {
-      console.error("response status is not 200");
-      return;
-    }
+  const [showInput, toggleShowInput] = useState(false);
+  const toggleInput = () => {
+    toggleShowInput(!showInput);
+  };
+  if (!showInput) {
+    return (
+      <FaCirclePlus
+        className="fixed bottom-28 cursor-pointer text-primary transition hover:scale-125 max-w-xl mx-auto"
+        size={48}
+        onClick={toggleInput}
+      />
+    );
+  }
+
+  const onSubmit = handleSubmit(async (data: TweetType) => {
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("content", data.content);
-    formData.append("photo", data.photo);
+
+    if (file && data.photo) {
+      const cloudflareForm = new FormData();
+      cloudflareForm.append("file", file);
+      const response = await fetch(uploadUrl, {
+        method: "post",
+        body: cloudflareForm,
+      });
+
+      if (response.status !== 200) {
+        console.error("response status is not 200");
+        return;
+      }
+      formData.append("photo", data.photo);
+    }
 
     const errors = await addTweet(formData);
     if (errors) {
       console.error(errors);
     }
+
+    toggleShowInput(false);
   });
 
   const action = async () => {
@@ -67,9 +80,10 @@ export default function AddTweet({ toggleShowInput }: Props) {
 
     await onSubmit();
   };
+  console.log(errors);
   return (
     <form
-      className="animate-slide-up flex h-screen w-full flex-col gap-4 rounded-xl bg-secondary p-4 shadow-lg"
+      className="animate-slide-up flex fixed w-full flex-col gap-4 rounded-2xl bg-secondary p-4 shadow-lg z-999 mx-auto min-h-screen max-w-xl -ml-4 mt-4 border-x-8 border-background"
       action={action}
     >
       <FaXmark
@@ -85,10 +99,7 @@ export default function AddTweet({ toggleShowInput }: Props) {
         errors={[errors.title?.message ?? ""]}
       />
       <section className="flex gap-2">
-        <Avatar className="size-12">
-          <AvatarImage src="https://github.com/devgony.png" />
-          <AvatarFallback>avatar</AvatarFallback>
-        </Avatar>
+        <Avatar src={me?.photo} username={me?.username ?? ""} />
         <div className="-mt-1 w-full">
           <p className="mb-1 pl-3 text-blue-400">{me?.username}</p>
           <Textarea
@@ -139,6 +150,10 @@ export default function AddTweet({ toggleShowInput }: Props) {
         accept="image/*"
         className="hidden"
       />
+      <span className="text-red-500">
+        {errors.content?.message ?? ""}
+        {errors.photo?.message ?? ""}
+      </span>
     </form>
   );
 }

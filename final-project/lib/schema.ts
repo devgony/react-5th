@@ -13,9 +13,7 @@ export const tweetSchema = z.object({
     })
     .min(1)
     .max(1024),
-  photo: z.string({
-    required_error: "Photo is required",
-  }),
+  photo: z.string().nullish(),
 });
 
 export type TweetType = z.infer<typeof tweetSchema>;
