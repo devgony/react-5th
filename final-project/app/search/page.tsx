@@ -1,6 +1,6 @@
 "use client";
 import { useFormState } from "react-dom";
-import FormButton from "../../components/form-button";
+import FormButtom from "../../components/form-button";
 import Input from "../../components/input";
 import { searchTweets } from "./actions";
 import { useEffect, useRef, useState } from "react";
@@ -10,7 +10,7 @@ import TweetList from "@/components/tweet-list";
 import GoBack from "@/components/go-back";
 import { GrFormPreviousLink } from "react-icons/gr";
 import { SlideInRight } from "@/components/framer/slide-in-right";
-import { PageTransitionLayout } from "@/layouts/PageTransitionLayout";
+import { FromRight } from "@/layouts/from-right";
 
 export default function Search() {
   // const [state, dispatch] = useFormState(searchTweets, null);
@@ -26,7 +26,7 @@ export default function Search() {
     });
   }, [keyword]);
   return (
-    <PageTransitionLayout>
+    <FromRight>
       <div className="bg-second w-full h-screen p-2">
         <div className="flex gap-2 items-center pr-8">
           {/* <a href="/" className="text-2xl text-primary-foreground">
@@ -45,6 +45,6 @@ export default function Search() {
         </div>
         <TweetList tweets={tweets} />
       </div>
-    </PageTransitionLayout>
+    </FromRight>
   );
 }

@@ -25,7 +25,12 @@ export default async function ProfileCard({ user }: Props) {
     <>
       <section className="h-36 bg-primary/50" />
       <div className="absolute -mt-8 rounded-full bg-background p-1">
-        <Avatar username={user.username} size="md" src={user.photo} />
+        <Avatar
+          username={user.username}
+          size="md"
+          src={user.photo}
+          link={false}
+        />
       </div>
       <div className="px-4 mt-12">
         <section className="rounded-xl bg-secondary p-4 flex flex-col gap-1">

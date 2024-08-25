@@ -7,6 +7,8 @@ import Avatar from "@/components/avatar";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { createOrEnterChatRoom } from "../chat-rooms/actions";
+import { FromBottom } from "@/layouts/from-bottom";
+import { FromRight } from "@/layouts/from-right";
 
 interface Props {
   searchParams: { [key: string]: string | string[] | undefined };

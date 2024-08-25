@@ -6,7 +6,7 @@ interface ILayoutProps {
   children: ReactNode;
 }
 
-export const PageTransition: FC<ILayoutProps> = ({ children }) => {
+export const FromBottom: FC<ILayoutProps> = ({ children }) => {
   const path = usePathname();
 
   return (
@@ -22,16 +22,15 @@ export const PageTransition: FC<ILayoutProps> = ({ children }) => {
         }}
         variants={{
           initialState: {
-            x: "100%",
+            y: "100%",
           },
           animateState: {
-            x: 0,
+            y: 0,
           },
           exitState: {
-            x: "-100%",
+            y: "-100%",
           },
         }}
-        className="min-h-screen w-full"
       >
         {children}
       </motion.div>

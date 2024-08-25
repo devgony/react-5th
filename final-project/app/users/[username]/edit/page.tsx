@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { editUser, editUserCached } from "./actions";
 import { useFormState } from "react-dom";
 import { notFound } from "next/navigation";
-import FormButton from "@/components/form-button";
+import FormButtom from "@/components/form-button";
 import { revalidatePath } from "next/cache";
 import { Button } from "@/components/ui/button";
 import Avatar from "@/components/avatar";
@@ -113,6 +113,7 @@ export default function EditProfile({ params: { username } }: UsernameParams) {
           username={watch("username")}
           size="md"
           src={preview ?? watch("photo")}
+          link={false}
         />
         <div className="rounded-full size-6 bg-secondary absolute right-0 top-0 z-99 flex justify-center items-center">
           <FaPencilAlt className="text-muted-foreground" size={12} />

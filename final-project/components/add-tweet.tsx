@@ -17,6 +17,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { tweetSchema, TweetType } from "@/lib/schema";
 import Image from "next/image";
 import Avatar from "./avatar";
+import { FromBottom } from "@/layouts/from-bottom";
 
 export default function AddTweet() {
   const me = useRecoilValue(meState);
@@ -91,7 +92,7 @@ export default function AddTweet() {
         onClick={() => toggleShowInput(false)}
       />
       <Input
-        className="text-2xl"
+        className="text-2xl border-0"
         type="text"
         {...register("title")}
         placeholder="Title"
@@ -103,7 +104,7 @@ export default function AddTweet() {
         <div className="-mt-1 w-full">
           <p className="mb-1 pl-3 text-blue-400">{me?.username}</p>
           <Textarea
-            className="min-h-48 bg-transparent"
+            className="min-h-96 bg-transparent border-0 resize-none"
             placeholder="Enter a tweet"
             {...register("content")}
           />

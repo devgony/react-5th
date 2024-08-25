@@ -3,7 +3,7 @@
 import { useFormState } from "react-dom";
 import createAccount from "./actions";
 import Input from "../../components/input";
-import FormButton from "../../components/form-button";
+import FormButtom from "../../components/form-button";
 
 export default function CreateAccount() {
   const [state, dispatch] = useFormState(createAccount, null);
@@ -38,7 +38,7 @@ export default function CreateAccount() {
         errors={state?.fieldErrors?.password}
       />
       {/* TODO: add password confirm */}
-      <FormButton payload="Create Account" />
+      <FormButtom payload="Create Account" />
     </form>
   );
 }

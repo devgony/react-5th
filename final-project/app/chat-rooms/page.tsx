@@ -7,7 +7,7 @@ import LastMessage from "@/components/last-message";
 import UnreadCount from "@/components/unread-count";
 import getSession from "@/lib/session";
 import { notFound } from "next/navigation";
-import FormButton from "@/components/form-button";
+import FormButtom from "@/components/form-button";
 import { Button } from "@/components/ui/button";
 
 export default async function ChatRooms() {
@@ -59,7 +59,7 @@ export default async function ChatRooms() {
                   userId={session.id!} // TODO: why undefined?
                 />
                 <span className="w-24">
-                  <FormButton payload="Delete" />
+                  <FormButtom payload="Delete" />
                 </span>
               </span>
             </form>

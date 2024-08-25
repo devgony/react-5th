@@ -3,7 +3,7 @@
 import { useFormState } from "react-dom";
 import handleForm from "./actions";
 import Input from "../../components/input";
-import FormButton from "../../components/form-button";
+import FormButtom from "../../components/form-button";
 
 export default function Login() {
   const [state, dispatch] = useFormState(handleForm, null);
@@ -32,7 +32,7 @@ export default function Login() {
         errors={state?.fieldErrors?.password}
       />
       <p className="text-sm text-blue-400">Forget your password?</p>
-      <FormButton payload="Log in" />
+      <FormButtom payload="Log in" />
     </form>
   );
 }

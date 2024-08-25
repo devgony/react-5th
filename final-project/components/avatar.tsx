@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import Link from "next/link";
 
 function stringToHash(str: string): number {
   let hash = 0;
@@ -19,12 +20,14 @@ interface Props {
   src?: string | null;
   size?: "xs" | "sm" | "md";
   className?: string;
+  link?: boolean;
 }
 export default function _Avatar({
   username = "",
   src,
   size = "sm",
   className,
+  link = true,
 }: Props) {
   const firstLetter = username[0];
   const hash = stringToHash(username);
@@ -48,8 +51,14 @@ export default function _Avatar({
 
   const notNullSrc = src ?? "";
 
-  return (
-    <Avatar className={cn(sizeClass, className)}>
+  const InnerAvatar = () => (
+    <Avatar
+      className={cn(
+        sizeClass,
+        className,
+        link && "hover:ring-2 hover:ring-primary"
+      )}
+    >
       <AvatarImage src={notNullSrc} />
       <AvatarFallback
         style={{
@@ -60,5 +69,15 @@ export default function _Avatar({
         {firstLetter}
       </AvatarFallback>
     </Avatar>
+  );
+
+  if (!link) {
+    return <InnerAvatar />;
+  }
+
+  return (
+    <Link href={`/users/${username}`}>
+      <InnerAvatar />
+    </Link>
   );
 }

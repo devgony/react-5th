@@ -2,7 +2,7 @@
 import { useEffect, useOptimistic, useRef, useState } from "react";
 import { useFormState } from "react-dom";
 import { createResponse, ResponsesType } from "../app/tweets/[id]/actions";
-import FormButton from "./form-button";
+import FormButtom from "./form-button";
 import Input from "./input";
 import { z } from "zod";
 import { Textarea } from "./ui/textarea";
@@ -123,7 +123,7 @@ export default function Responses({ responses, tweetId }: Props) {
           rows={1}
           // errors={formState?.formErrors}
         />
-        <FormButton payload="Send" />
+        <FormButtom payload="Send" />
       </form>
     </>
   );

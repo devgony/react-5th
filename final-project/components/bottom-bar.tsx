@@ -61,7 +61,7 @@ export default function BottomBar({ me }: Props) {
           pathname !== "/profile" && "opacity-50"
         )}
       >
-        <Avatar src={me.photo} username={me.username} size="xs" />
+        <Avatar src={me.photo} username={me.username} size="xs" link={false} />
         <p className={"text-xs"}>You</p>
       </Link>
 
