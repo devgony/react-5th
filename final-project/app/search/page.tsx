@@ -8,6 +8,9 @@ import { Tweets } from "../actions";
 import { Button } from "@/components/ui/button";
 import TweetList from "@/components/tweet-list";
 import GoBack from "@/components/go-back";
+import { GrFormPreviousLink } from "react-icons/gr";
+import { SlideInRight } from "@/components/framer/slide-in-right";
+import { PageTransitionLayout } from "@/layouts/PageTransitionLayout";
 
 export default function Search() {
   // const [state, dispatch] = useFormState(searchTweets, null);
@@ -23,39 +26,25 @@ export default function Search() {
     });
   }, [keyword]);
   return (
-    <div className="bg-third w-full h-screen p-2 overflow-y-scroll">
-      <div className="flex gap-2 items-center pr-8">
-        <GoBack variant="arrow" />
-        <Input
-          className="bg-background"
-          placeholder="Search"
-          name="keyword"
-          type="text"
-          value={keyword}
-          onChange={(e) => setKeyword(e.target.value)}
-          required={false}
-        />
+    <PageTransitionLayout>
+      <div className="bg-second w-full h-screen p-2">
+        <div className="flex gap-2 items-center pr-8">
+          {/* <a href="/" className="text-2xl text-primary-foreground">
+          <GrFormPreviousLink className="cursor-pointer" size={32} />
+        </a> */}
+          <GoBack variant="arrow" />
+          <Input
+            className="bg-background"
+            placeholder="Search"
+            name="keyword"
+            type="text"
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
+            required={false}
+          />
+        </div>
+        <TweetList tweets={tweets} />
       </div>
-      <TweetList tweets={tweets} />
-    </div>
-    // <div>
-    //   <form action={dispatch} ref={formRef}>
-    //     <Input
-    //       type="text"
-    //       name="keyword"
-    //       placeholder="search keyword"
-    //       required={false}
-    //       errors={state?.formErrors}
-    //     />
-    //     <FormButton payload="Search" />
-    //   </form>
-    //   {state?.tweets?.map((t) => {
-    //     return (
-    //       <div key={t.id}>
-    //         <div>{t.content}</div>
-    //       </div>
-    //     );
-    //   })}
-    // </div>
+    </PageTransitionLayout>
   );
 }

@@ -31,7 +31,8 @@ export default async function RootLayout({
       <body
         className={cn(
           "min-h-screen bg-third font-sans antialiased",
-          fontSans.variable
+          fontSans.variable,
+          "overflow-y-scroll overflow-x-hidden"
         )}
       >
         <div className="mx-auto min-h-screen max-w-xl bg-background">

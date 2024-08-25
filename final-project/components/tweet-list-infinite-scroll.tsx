@@ -53,9 +53,9 @@ export default function TweetListInifiteScroll({ initTweets }: Props) {
       {!isLastPage ? (
         <span
           ref={trigger}
-          className="mx-auto w-fit rounded-md bg-primary px-3 py-2 text-sm font-semibold hover:opacity-90 active:scale-95"
+          className="mx-auto w-fit rounded-md px-3 py-2 text-sm font-semibold hover:opacity-90 active:scale-95 text-primary"
         >
-          {isLoading ? "로딩 중" : "Load more"}
+          {isLoading ? "Loading" : "Load more"}
         </span>
       ) : null}
     </>
