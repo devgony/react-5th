@@ -3,7 +3,6 @@ import Link from "next/link";
 import getSession from "@/lib/session";
 import Avatar from "@/components/avatar";
 import { Button } from "@/components/ui/button";
-import { FaPencilAlt } from "react-icons/fa";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import { redirect } from "next/navigation";
 import ProfileCard from "@/components/profile-card";

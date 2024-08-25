@@ -2,7 +2,7 @@
 import db from "@/lib/db";
 import getSession from "@/lib/session";
 import { z } from "zod";
-import { revalidateTag, unstable_cache } from "next/cache";
+import { revalidatePath, revalidateTag, unstable_cache } from "next/cache";
 import { Prisma } from "@prisma/client";
 
 export default async function getTweet(id: number) {
@@ -15,6 +15,10 @@ export default async function getTweet(id: number) {
 }
 export type GetTweet = Prisma.PromiseReturnType<typeof getTweet>;
 
+export const getTweetCached = unstable_cache(getTweet, ["get-tweet"], {
+  tags: ["get-tweet"],
+});
+
 export async function getResponses(tweetId: number) {
   return db.response.findMany({
     where: {
@@ -23,6 +27,7 @@ export async function getResponses(tweetId: number) {
     include: {
       user: {
         select: {
+          id: true,
           username: true,
           photo: true,
         },
@@ -119,3 +124,41 @@ export async function dislikeTweet(tweetId: number) {
 
   revalidateTag(`get-likes-${tweetId}`);
 }
+
+export const editTweetContent = async (formData: FormData, tweetId: number) => {
+  const schema = z.string();
+  const data = formData.get("content");
+  const { success, error, data: payload } = schema.safeParse(data);
+
+  if (!success || !payload) {
+    return error?.flatten();
+  }
+
+  await db.tweet.update({
+    where: { id: tweetId },
+    data: {
+      content: payload,
+    },
+  });
+
+  revalidatePath(`/tweets/${tweetId}`);
+};
+
+export const editResponseContent = async (formData: FormData, id: number) => {
+  const schema = z.string();
+  const data = formData.get("content");
+  const { success, error, data: payload } = schema.safeParse(data);
+
+  if (!success || !payload) {
+    return error?.flatten();
+  }
+
+  const res = await db.response.update({
+    where: { id },
+    data: {
+      payload,
+    },
+  });
+
+  revalidatePath(`/tweets/${res.tweetId}`);
+};
