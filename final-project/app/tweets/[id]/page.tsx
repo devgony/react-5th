@@ -6,12 +6,13 @@ import Link from "next/link";
 import { BsPostcardHeartFill } from "react-icons/bs";
 import Avatar from "@/components/avatar";
 import { notFound } from "next/navigation";
-import { formatToTimeAgo } from "@/lib/utils";
+import { dw, formatToTimeAgo } from "@/lib/utils";
 import Image from "next/image";
 import Article from "@/components/article";
 import TweetContent from "@/components/tweet-content";
 
 export default async function Tweet({ params }: { params: { id: string } }) {
+  await dw();
   const tweetId = +params.id;
   const responses = await getResponsesCached(tweetId);
   const tweet = await getTweet(tweetId);

@@ -83,8 +83,9 @@ Unique constraint failed on the fields: (`userId`,`tweetId`)
 - [x] message 보내고 로딩으로 중복 요청 막자 + LoaderIcon
 - [x] 가입시 패스워드 정책 완화
 - [x] user profile 하단에 tweets 나열
-- [ ] Loading 추가
-- [ ] ChatRoom 안에서도 1 stream
-- [ ] 모든 modal 및 page 전환에 slide 추가
+- [x] Loading 추가 - global + home skeleton
 - [ ] / 에서도 like button 추가
+- [ ] page 별 skeleton 추가
+- [ ] 모든 modal 및 page 전환에 slide 추가
 - [ ] 각 tweet 및 댓글 수정/삭제 기능 추제
+- [ ] ChatRoom 안에서도 1 stream

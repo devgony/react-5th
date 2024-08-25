@@ -18,7 +18,6 @@ export default async function Home() {
           <IoSearch size={36} />
         </Link>
       </header>
-      {/* TODO: Select Sort & View */}
       <TweetListInifiteScroll initTweets={tweets} />
       <AddTweet />
     </main>

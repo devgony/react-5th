@@ -62,3 +62,7 @@ export function formatToTimeAgo(date: string): string {
 
   return formatter.format(diff, "days");
 }
+
+export async function dw() {
+  await new Promise((resolve) => setTimeout(resolve, 3 * 1000));
+}
