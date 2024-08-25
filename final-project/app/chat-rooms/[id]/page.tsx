@@ -2,8 +2,8 @@ import ChatMessagesList from "@/components/chat-messages-list";
 import { getChatRoom } from "./actions";
 import { getMessages } from "../actions";
 import getSession from "@/lib/session";
-import { getUser } from "@/app/profile/page";
 import { notFound } from "next/navigation";
+import { getUser } from "@/app/profile/actions";
 
 interface Props {
   params: {

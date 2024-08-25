@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run gen && prisma migrate deploy && next build",
     "start": "next start",
     "lint": "next lint",
-    "gen": "npx prisma generate",
+    "gen": "prisma generate",
     "mig": "npx prisma migrate dev",
     "test": "playwright test",
     "studio": "npx prisma studio",
