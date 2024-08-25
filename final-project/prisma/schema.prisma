@@ -39,7 +39,7 @@ model Tweet {
   photo      String?
   created_at DateTime   @default(now())
   updated_at DateTime   @updatedAt
-  user       User       @relation(fields: [userId], references: [id])
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId     Int
   Like       Like[]
   Response   Response[]
@@ -47,8 +47,8 @@ model Tweet {
 
 model Like {
   created_at DateTime @default(now())
-  user       User     @relation(fields: [userId], references: [id])
-  tweet      Tweet    @relation(fields: [tweetId], references: [id])
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tweet      Tweet    @relation(fields: [tweetId], references: [id], onDelete: Cascade)
   userId     Int
   tweetId    Int
 
@@ -57,8 +57,8 @@ model Like {
 
 model Response {
   id         Int      @id @default(autoincrement())
-  user       User     @relation(fields: [userId], references: [id])
-  tweet      Tweet    @relation(fields: [tweetId], references: [id])
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tweet      Tweet    @relation(fields: [tweetId], references: [id], onDelete: Cascade)
   payload    String
   userId     Int
   tweetId    Int
@@ -81,17 +81,17 @@ model Message {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
-  room            ChatRoom        @relation(fields: [chatRoomId], references: [id])
+  room            ChatRoom        @relation(fields: [chatRoomId], references: [id], onDelete: NoAction)
   chatRoomId      String
-  user            User            @relation(fields: [userId], references: [id])
+  user            User            @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId          Int
   message_read_by MessageReadBy[]
 }
 
 model MessageReadBy {
-  message   Message  @relation(fields: [messageId], references: [id])
+  message   Message  @relation(fields: [messageId], references: [id], onDelete: NoAction)
   messageId Int
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    Int
   readAt    DateTime @default(now())
 

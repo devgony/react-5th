@@ -8,7 +8,7 @@ import Link from "next/link";
 export default async function Home() {
   const tweets = await getInitTweetsCached();
   return (
-    <main className="flex min-h-screen flex-col gap-2 p-4">
+    <main className="flex min-h-screen flex-col gap-2 p-4 pb-20">
       <header className="flex items-center justify-between">
         <span className="flex items-center gap-2">
           <BsPostcardHeart className="h-10 w-10" />

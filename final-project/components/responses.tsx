@@ -93,7 +93,7 @@ export default function Responses({ responses, tweetId, myId }: Props) {
   };
   useEffect(() => {
     scrollToBottom();
-  }, [state.responses]);
+  }, [state.responses.length]);
 
   return (
     <>
@@ -119,7 +119,7 @@ export default function Responses({ responses, tweetId, myId }: Props) {
       </div>
       <div className="my-8" />
       <form
-        className="flex items-end fixed max-w-xl w-full bottom-20 mx-auto gap-px px-4"
+        className="flex items-center fixed max-w-xl w-full bottom-20 mx-auto gap-px px-4"
         action={action}
       >
         <Textarea
