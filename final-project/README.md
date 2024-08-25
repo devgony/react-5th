@@ -86,6 +86,8 @@ Unique constraint failed on the fields: (`userId`,`tweetId`)
 - [x] 각 tweet 및 댓글 수정/삭제 기능 추가
 - [x] avatar link 추가
 - [x] 모든 modal 및 page 전환에 slide 추가
+- [ ] 패스워드 확인 추가
+- [ ] github 인증 추가
 
 - [ ] page 별 skeleton 추가
 - [ ] / 에서도 like button 추가

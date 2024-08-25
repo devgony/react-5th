@@ -37,6 +37,13 @@ export default function CreateAccount() {
         required={true}
         errors={state?.fieldErrors?.password}
       />
+      <Input
+        name="confirm"
+        type="password"
+        placeholder="Confirm Password"
+        required={true}
+        errors={state?.fieldErrors?.confirm}
+      />
       {/* TODO: add password confirm */}
       <FormButtom payload="Create Account" />
     </form>

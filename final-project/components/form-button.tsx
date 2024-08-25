@@ -17,7 +17,7 @@ export default function FormButton({ payload }: FormButtonProps) {
         e.stopPropagation();
       }}
     >
-      {pending ? "로딩 중" : payload}
+      {pending ? "Loading" : payload}
     </Button>
   );
 }

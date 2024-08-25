@@ -17,8 +17,9 @@ datasource db {
 model User {
   id            Int             @id @default(autoincrement())
   username      String          @unique
-  password      String
-  email         String          @unique
+  password      String?
+  email         String?         @unique
+  github_id     String?         @unique
   bio           String?
   photo         String?
   created_at    DateTime        @default(now())

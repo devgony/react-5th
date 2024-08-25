@@ -45,11 +45,17 @@ const checkUniqueEmail = async (
   }
 };
 
-const formSchema = z.object({
-  email: z.string().email(),
-  username: z.string().min(5, "Username must be at least 5 characters"),
-  password: z.string().min(6, "Password must be at least 6 characters"),
-});
+const formSchema = z
+  .object({
+    email: z.string().email(),
+    username: z.string().min(5, "Username must be at least 5 characters"),
+    password: z.string().min(6, "Password must be at least 6 characters"),
+    confirm: z.string(),
+  })
+  .refine((data) => data.password === data.confirm, {
+    message: "Passwords do not match",
+    path: ["confirm"],
+  });
 
 const superRefinedSchema = formSchema
   .superRefine(checkUniqueUsername)
@@ -63,6 +69,7 @@ export default async function createAccount(
     email: formData.get("email"),
     username: formData.get("username"),
     password: formData.get("password"),
+    confirm: formData.get("confirm"),
   };
 
   const result = await superRefinedSchema.spa(data);

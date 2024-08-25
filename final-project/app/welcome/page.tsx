@@ -14,7 +14,12 @@ export default function Welcome() {
         and friends.
       </p>
       <Link href="/create-account" className="w-full">
-        <Button className="w-full">Register</Button>
+        <Button className="w-full">Register email</Button>
+      </Link>
+      <Link href="/github/start" className="w-full">
+        <Button className="w-full" variant="outline">
+          Sign in github
+        </Button>
       </Link>
       <Link href="/log-in" className="w-full">
         <Button className="w-full" variant={"secondary"}>
