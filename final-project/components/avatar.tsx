@@ -60,7 +60,7 @@ export default function _Avatar({
       className={cn(
         sizeClass,
         className,
-        link && "hover:ring-2 hover:ring-primary"
+        link && "hover:ring-2 hover:ring-primary cursor-pointer"
       )}
       onClick={(e) => {
         if (!link) return;
