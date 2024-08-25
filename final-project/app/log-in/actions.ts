@@ -41,7 +41,7 @@ export default async function handleForm(prevState: any, formData: FormData) {
     };
   }
 
-  const ok = await bcrypt.compare(password, user.password);
+  const ok = await bcrypt.compare(password, user.password!);
   if (!ok) {
     return {
       fieldErrors: {

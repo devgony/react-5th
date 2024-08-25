@@ -64,7 +64,9 @@ export default function EditProfile({ params: { username } }: UsernameParams) {
     }
 
     const formData = new FormData();
-    formData.append("email", data.email);
+    if (data.email) {
+      formData.append("email", data.email);
+    }
     formData.append("username", data.username);
     formData.append("bio", data.bio);
 
