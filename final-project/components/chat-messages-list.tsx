@@ -5,7 +5,7 @@ import saveMessageReadBy, {
   revalidateTagOnServer,
   saveMessage,
 } from "@/app/chat-rooms/actions";
-import { formatToTimeAgo } from "@/lib/utils";
+import { formatDate } from "@/lib/utils";
 import { createClient, RealtimeChannel } from "@supabase/supabase-js";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -182,7 +182,7 @@ export default function ChatMessagesList({
                   )}
               </section>
               <span className="text-xs">
-                {formatToTimeAgo(message.created_at.toString())}
+                {formatDate(message.created_at.toString())}
               </span>
             </div>
           </div>

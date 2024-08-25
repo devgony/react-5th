@@ -22,13 +22,6 @@ export default async function TweetContent({ tweet }: Props) {
   const { count, isLiked } = await getLikesCached(id);
   return (
     <>
-      <div className="flex items-center gap-2">
-        <BsPostcardHeartFill
-          size={64}
-          className="rounded-full bg-secondary p-2"
-        />
-        <h1 className="text-3xl font-bold">{title}</h1>
-      </div>
       <Article
         id={id}
         userId={userId}

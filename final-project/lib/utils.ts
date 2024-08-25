@@ -52,7 +52,28 @@ export const onImageChange = async <T extends string>(
   }
 };
 
-export function formatToTimeAgo(date: string): string {
+export function formatDate(date: string): string {
+  const parsedDate = new Date(date);
+
+  const month = String(parsedDate.getMonth() + 1).padStart(2, "0");
+  const day = String(parsedDate.getDate()).padStart(2, "0");
+  const year = parsedDate.getFullYear();
+
+  let hours = parsedDate.getHours();
+  const minutes = String(parsedDate.getMinutes()).padStart(2, "0");
+  const ampm = hours >= 12 ? "PM" : "AM";
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  const strTime = `${hours}:${minutes} ${ampm}`;
+
+  return `${month}/${day}/${year} ${strTime}`;
+}
+
+export async function dw() {
+  await new Promise((resolve) => setTimeout(resolve, 3 * 1000));
+}
+
+export function formatToTimeAgo2(date: string): string {
   const dayInMs = 1000 * 60 * 60 * 24;
   const time = new Date(date).getTime();
   const now = new Date().getTime();
@@ -61,8 +82,4 @@ export function formatToTimeAgo(date: string): string {
   const formatter = new Intl.RelativeTimeFormat("ko");
 
   return formatter.format(diff, "days");
-}
-
-export async function dw() {
-  await new Promise((resolve) => setTimeout(resolve, 3 * 1000));
 }

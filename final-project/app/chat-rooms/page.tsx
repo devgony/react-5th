@@ -2,7 +2,7 @@ import Link from "next/link";
 import { deleteChatRoom, getChatRooms } from "./actions";
 import { TbMessageCircleFilled } from "react-icons/tb";
 import Avatar from "@/components/avatar";
-import { formatToTimeAgo } from "@/lib/utils";
+import { formatDate } from "@/lib/utils";
 import LastMessage from "@/components/last-message";
 import UnreadCount from "@/components/unread-count";
 import getSession from "@/lib/session";
@@ -42,7 +42,7 @@ export default async function ChatRooms() {
                     </h2>
                     <p className="text-neutral-400">
                       {chatRoom.updated_at && // TODO: why undefined?
-                        formatToTimeAgo(chatRoom.updated_at.toString())}
+                        formatDate(chatRoom.updated_at.toString())}
                     </p>
                   </div>
                   {/* <p className="dark:text-gray-300">{chatRoom.payload}</p> */}

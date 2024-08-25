@@ -2,7 +2,7 @@ import { Tweets } from "@/app/actions";
 import Link from "next/link";
 import { useState } from "react";
 import Avatar from "./avatar";
-import { formatToTimeAgo } from "@/lib/utils";
+import { formatDate } from "@/lib/utils";
 import Image from "next/image";
 
 interface Props {
@@ -30,7 +30,7 @@ export default function TweetList({ tweets }: Props) {
                 <Avatar username={username} src={profilePhoto} />
                 <p className="text-blue-400">{username}</p>
                 <p className="text-xs text-muted-foreground">
-                  {formatToTimeAgo(updated_at.toString())}
+                  {formatDate(updated_at.toString())}
                 </p>
               </span>
               <h2 className="text-xl font-bold">{title}</h2>

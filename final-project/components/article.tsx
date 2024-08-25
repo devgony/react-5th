@@ -1,5 +1,5 @@
 "use client";
-import { formatToTimeAgo } from "@/lib/utils";
+import { formatDate } from "@/lib/utils";
 import Avatar from "./avatar";
 import { PiPencilCircleFill } from "react-icons/pi";
 import { FaPencilAlt } from "react-icons/fa";
@@ -61,9 +61,11 @@ export default function Article({
         )}
         <Avatar username={username} src={photo} />
         <section className="-mt-2 w-full">
-          <span className="flex gap-2">
+          <span className="flex gap-2 items-center">
             <p className="text-blue-400">{username}</p>
-            <p>{formatToTimeAgo(updated_at.toString())}</p>
+            <p className="text-xs text-muted-foreground">
+              {formatDate(updated_at.toString())}
+            </p>
           </span>
 
           {isEditing ? (

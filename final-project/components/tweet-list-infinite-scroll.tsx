@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { formatToTimeAgo } from "@/lib/utils";
+import { formatDate } from "@/lib/utils";
 import Avatar from "./avatar";
 import { getMoreTweets, Tweets } from "@/app/actions";
 import TweetList from "./tweet-list";

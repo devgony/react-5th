@@ -11,7 +11,7 @@ import Link from "next/link";
 import { BsPostcardHeartFill } from "react-icons/bs";
 import Avatar from "@/components/avatar";
 import { notFound } from "next/navigation";
-import { dw, formatToTimeAgo } from "@/lib/utils";
+import { dw, formatDate } from "@/lib/utils";
 import Image from "next/image";
 import TweetContent from "@/components/tweet-content";
 import { Button } from "@/components/ui/button";
