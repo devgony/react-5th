@@ -83,7 +83,8 @@ Unique constraint failed on the fields: (`userId`,`tweetId`)
 - [x] 가입시 패스워드 정책 완화
 - [x] user profile 하단에 tweets 나열
 - [x] Loading 추가 - global + home skeleton
-- [ ] 각 tweet 및 댓글 수정/삭제 기능 추가
+- [x] 각 tweet 및 댓글 수정/삭제 기능 추가
+- [ ] 성능 안나오는 부분 optimize eg) editTweet, resp
 - [ ] page 별 skeleton 추가
 - [ ] 모든 modal 및 page 전환에 slide 추가
 - [ ] ChatRoom 안에서도 1 stream

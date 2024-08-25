@@ -1,6 +1,7 @@
 import { IoMdArrowRoundBack } from "react-icons/io";
 import LikeButton from "@/components/like-button";
 import getTweet, {
+  deleteTweet,
   getLikesCached,
   getResponsesCached,
   getTweetCached,
@@ -15,6 +16,8 @@ import Image from "next/image";
 import TweetContent from "@/components/tweet-content";
 import { Button } from "@/components/ui/button";
 import EditTweet from "@/components/edit-tweet";
+import GoBack from "@/components/go-back";
+import getSession from "@/lib/session";
 
 export default async function Tweet({ params }: { params: { id: string } }) {
   await dw();
@@ -24,6 +27,7 @@ export default async function Tweet({ params }: { params: { id: string } }) {
   if (!tweet) {
     notFound();
   }
+  const session = await getSession();
   return (
     <div className="min-h-screen pb-24">
       <hr className="border-3" />
@@ -32,12 +36,23 @@ export default async function Tweet({ params }: { params: { id: string } }) {
         <header className="flex items-center gap-4 border-b py-3 justify-between w-full">
           {/* TODO: it should be go back, with client component */}
           <div className="flex gap-2">
-            <Link href="/">
+            {/* <Link href="/">
               <IoMdArrowRoundBack size={28} className="cursor-pointer" />
-            </Link>
+            </Link> */}
+            <GoBack variant="arrow" />
             <BsPostcardHeartFill size={28} />
             <h1 className="text-xl font-bold">{tweet.title}</h1>
           </div>
+          {session.id === tweet.userId && (
+            <form
+              action={async () => {
+                "use server";
+                return deleteTweet(tweetId);
+              }}
+            >
+              <Button variant="ghost">Delete</Button>
+            </form>
+          )}
         </header>
         <TweetContent tweet={tweet} />
       </div>

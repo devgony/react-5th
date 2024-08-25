@@ -4,6 +4,7 @@ import getSession from "@/lib/session";
 import { z } from "zod";
 import { revalidatePath, revalidateTag, unstable_cache } from "next/cache";
 import { Prisma } from "@prisma/client";
+import { redirect } from "next/navigation";
 
 export default async function getTweet(id: number) {
   return db.tweet.findUnique({
@@ -161,4 +162,13 @@ export const editResponseContent = async (formData: FormData, id: number) => {
   });
 
   revalidatePath(`/tweets/${res.tweetId}`);
+};
+
+export const deleteTweet = async (tweetId: number) => {
+  await db.tweet.delete({
+    where: { id: tweetId },
+  });
+
+  revalidatePath("/");
+  redirect("/");
 };
