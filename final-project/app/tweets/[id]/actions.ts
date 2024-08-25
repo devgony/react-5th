@@ -24,6 +24,7 @@ export async function getResponses(tweetId: number) {
       user: {
         select: {
           username: true,
+          photo: true,
         },
       },
     },

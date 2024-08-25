@@ -47,6 +47,7 @@ export default function Responses({ responses, tweetId }: Props) {
             userId: 0,
             user: {
               username: me?.username,
+              photo: me?.photo,
             },
           },
         ],
@@ -88,12 +89,13 @@ export default function Responses({ responses, tweetId }: Props) {
     <>
       <div className="p-4 flex flex-col gap-2 ">
         {state.responses.map(
-          ({ user: { username }, payload, created_at }, i) => (
+          ({ user: { username, photo }, payload, created_at }, i) => (
             <Article
               key={`response-${i}`}
               username={username}
               content={payload}
               updated_at={created_at}
+              photo={photo}
             />
           )
         )}
