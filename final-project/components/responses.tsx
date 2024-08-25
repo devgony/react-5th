@@ -87,9 +87,17 @@ export default function Responses({ responses, tweetId, myId }: Props) {
     setValue(event.target.value);
   };
 
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+  useEffect(() => {
+    scrollToBottom();
+  }, [state.responses]);
+
   return (
     <>
-      <div className="p-4 flex flex-col gap-2 ">
+      <div className="p-4 flex flex-col gap-1">
         {state.responses.map(
           (
             { id, user: { id: userId, username, photo }, payload, created_at },
@@ -127,6 +135,7 @@ export default function Responses({ responses, tweetId, myId }: Props) {
         />
         <FormButtom payload="Send" />
       </form>
+      <div ref={messagesEndRef} />
     </>
   );
 }
