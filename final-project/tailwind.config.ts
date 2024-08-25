@@ -76,10 +76,16 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        loading: {
+          "0%": { transform: "rotate(0deg)" },
+          "50%": { transform: "rotate(360deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        loading: "loading 1s ease-in-out infinite",
       },
     },
   },

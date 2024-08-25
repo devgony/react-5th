@@ -11,7 +11,6 @@ import Link from "next/link";
 import { BsPostcardHeartFill } from "react-icons/bs";
 import Avatar from "@/components/avatar";
 import { notFound } from "next/navigation";
-import { dw, formatDate } from "@/lib/utils";
 import Image from "next/image";
 import TweetContent from "@/components/tweet-content";
 import { Button } from "@/components/ui/button";
@@ -20,7 +19,6 @@ import GoBack from "@/components/go-back";
 import getSession from "@/lib/session";
 
 export default async function Tweet({ params }: { params: { id: string } }) {
-  await dw();
   const tweetId = +params.id;
   const responses = await getResponsesCached(tweetId);
   const tweet = await getTweetCached(tweetId);
@@ -28,6 +26,9 @@ export default async function Tweet({ params }: { params: { id: string } }) {
     notFound();
   }
   const session = await getSession();
+  if (!session.id) {
+    notFound();
+  }
   return (
     <div className="min-h-screen pb-24">
       <hr className="border-3" />
@@ -56,7 +57,7 @@ export default async function Tweet({ params }: { params: { id: string } }) {
         </header>
         <TweetContent tweet={tweet} />
       </div>
-      <Responses responses={responses} tweetId={tweetId} />
+      <Responses responses={responses} tweetId={tweetId} myId={session.id} />
     </div>
   );
 }

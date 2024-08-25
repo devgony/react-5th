@@ -16,9 +16,10 @@ import { notFound } from "next/navigation";
 interface Props {
   responses: ResponsesType;
   tweetId: number;
+  myId: number;
 }
 
-export default function Responses({ responses, tweetId }: Props) {
+export default function Responses({ responses, tweetId, myId }: Props) {
   const me = useRecoilValue(meState);
   const [state, reducerFn] = useOptimistic(
     { responses },
@@ -103,6 +104,7 @@ export default function Responses({ responses, tweetId }: Props) {
               content={payload}
               updated_at={created_at}
               photo={photo}
+              myId={myId}
             />
           )
         )}

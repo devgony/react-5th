@@ -21,6 +21,7 @@ interface Props {
   id: number; // id of tweet of response
   type: "tweet" | "response";
   userId: number;
+  myId: number;
 }
 
 export default function Article({
@@ -31,9 +32,9 @@ export default function Article({
   id,
   type,
   userId,
+  myId,
 }: Props) {
   const [isEditing, setIsEditing] = useState(false);
-  const me = useRecoilValue(meState);
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     console.log(event.keyCode);
     if (event.keyCode === 13) {
@@ -52,7 +53,7 @@ export default function Article({
   return (
     <>
       <article className="my-2 flex gap-2 hover:bg-secondary px-2 py-4 rounded-xl relative group">
-        {me?.id === userId && (
+        {myId === userId && (
           <FaPencilAlt
             className="text-muted-foreground group-hover:block hidden absolute right-2 top-2 hover:text-secondary-foreground cursor-pointer"
             onClick={() => setIsEditing((prev) => !prev)}
@@ -72,7 +73,7 @@ export default function Article({
             <form
               className="w-full"
               action={async (formData: FormData) => {
-                if (me?.id !== userId) {
+                if (myId !== userId) {
                   alert("You can't edit other's content");
                   return;
                 }

@@ -69,9 +69,9 @@ export function formatDate(date: string): string {
   return `${month}/${day}/${year} ${strTime}`;
 }
 
-export async function dw() {
-  await new Promise((resolve) => setTimeout(resolve, 3 * 1000));
-}
+// export async function dw() {
+//   await new Promise((resolve) => setTimeout(resolve, 3 * 1000));
+// }
 
 export function formatToTimeAgo2(date: string): string {
   const dayInMs = 1000 * 60 * 60 * 24;

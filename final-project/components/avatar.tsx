@@ -1,6 +1,8 @@
+"use client";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import Link from "next/link";
+import { redirect, useRouter } from "next/navigation";
 
 function stringToHash(str: string): number {
   let hash = 0;
@@ -35,6 +37,8 @@ export default function _Avatar({
   const randomFgColor = `#${(0xffffff - parseInt(randomBgColor, 16)).toString(
     16
   )}`;
+  const router = useRouter();
+
   // const sizeClass = size === "sm" ? "size-12" : "size-16";
   const sizeClass = (() => {
     switch (size) {
@@ -51,13 +55,18 @@ export default function _Avatar({
 
   const notNullSrc = src ?? "";
 
-  const InnerAvatar = () => (
+  return (
     <Avatar
       className={cn(
         sizeClass,
         className,
         link && "hover:ring-2 hover:ring-primary"
       )}
+      onClick={(e) => {
+        if (!link) return;
+        e.stopPropagation();
+        router.push(`/users/${username}`);
+      }}
     >
       <AvatarImage src={notNullSrc} />
       <AvatarFallback
@@ -69,15 +78,5 @@ export default function _Avatar({
         {firstLetter}
       </AvatarFallback>
     </Avatar>
-  );
-
-  if (!link) {
-    return <InnerAvatar />;
-  }
-
-  return (
-    <Link href={`/users/${username}`}>
-      <InnerAvatar />
-    </Link>
   );
 }

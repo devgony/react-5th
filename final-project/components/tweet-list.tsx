@@ -27,7 +27,7 @@ export default function TweetList({ tweets }: Props) {
           >
             <section className="flex w-3/4 flex-col gap-2">
               <span className="flex items-center gap-2">
-                <Avatar username={username} src={profilePhoto} />
+                <Avatar username={username} src={profilePhoto} link={false} />
                 <p className="text-blue-400">{username}</p>
                 <p className="text-xs text-muted-foreground">
                   {formatDate(updated_at.toString())}
