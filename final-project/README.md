@@ -60,20 +60,18 @@ or
 Unique constraint failed on the fields: (`userId`,`tweetId`)
 ```
 
-## D64-Search & Profile & Deployment 🔥
+## FinalProject-Search & Profile & Deployment 🔥
+
+### Required
 
 - [x] Implement the /search page where users should be able to search for tweets by keyword.
 - [x] Implement the /users/[username] page to display the profile of a user and the Tweets the user has posted.
 - [x] If the user is the owner of the profile show a link to the /users/[username]/edit page.
 - [x] In the edit profile page the user should be able to edit the username, email, bio and change password.
 - [x] Use Zod, Server Actions, useOptimistic and revalidatePath.
-- [ ] Deploy to Vercel and Vercel Postgres after watching this section.
+- [x] Deploy to Vercel and Vercel Postgres after watching this section.
 
-## final project
-
-### Required
-
-### Todo
+### Advanced
 
 - [x] email zod schema 제거
 - [x] tweet detail 이미지 안나옴 -> svg 문제, svg 는 막자
@@ -86,11 +84,11 @@ Unique constraint failed on the fields: (`userId`,`tweetId`)
 - [x] 각 tweet 및 댓글 수정/삭제 기능 추가
 - [x] avatar link 추가
 - [x] 모든 modal 및 page 전환에 slide 추가
-- [ ] 패스워드 확인 추가
-- [ ] github 인증 추가
+- [x] 패스워드 확인 추가
+- [x] github 인증 추가
 
 - [ ] page 별 skeleton 추가
 - [ ] / 에서도 like button 추가
 - [ ] ChatRoom 안에서도 1 stream
-- [ ] chatroom 생성시 에러 -> 간헐적..
+- [ ] chatroom 생성시 user 할당 안되는 이슈?
 - [ ] 성능 안나오는 부분 optimize eg) editTweet, resp
