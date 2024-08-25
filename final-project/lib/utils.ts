@@ -27,6 +27,11 @@ export const onImageChange = async <T extends string>(
     return;
   }
 
+  if (file.type === "image/svg+xml") {
+    alert("SVG files are not allowed.");
+    return;
+  }
+
   if (file.size > 1024 * 1024 * 5) {
     alert("5MB 이하의 이미지만 업로드 가능합니다."); // TODO: toast
     return;

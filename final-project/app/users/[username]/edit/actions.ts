@@ -33,8 +33,6 @@ export const editUser = async (formData: FormData, prevUser: User) => {
     Promise.resolve({} as EditUserType)
   );
 
-  console.log("updatedData", updatedData);
-
   await db.user.update({
     data: updatedData,
     where: {
@@ -43,10 +41,7 @@ export const editUser = async (formData: FormData, prevUser: User) => {
   });
 
   revalidatePath(`/users/${data.username}/edit`);
-
-  if (data.username != prevUser.username) {
-    redirect(`/users/${data.username}/edit`);
-  }
+  redirect(`/users/${data.username}`);
 };
 
 export const editUserCached = (formData: FormData, prevUser: User) =>

@@ -83,17 +83,12 @@ export default function EditProfile({ params: { username } }: UsernameParams) {
       formData.append("photo", data.photo);
     }
 
-    const errors = await editUser(formData, prevUser);
-    if (errors) {
-      console.error(errors);
-    }
+    await editUser(formData, prevUser);
   });
 
   const action = async () => {
     await onSubmit();
   };
-
-  const [open, setOpen] = useState(false);
 
   return (
     <form action={action} className="bg-secondary min-h-screen">

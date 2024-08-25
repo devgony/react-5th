@@ -99,25 +99,23 @@ export default function Responses({ responses, tweetId }: Props) {
         )}
       </div>
       <div className="my-8" />
-      <div className="fixed w-full max-w-xl flex justify-center">
-        <form
-          className="flex items-end fixed max-w-xl w-10/12 bottom-20 mx-auto gap-px"
-          action={action}
-        >
-          <Textarea
-            ref={textareaRef}
-            className="h-auto w-full resize-none rounded-xl bg-secondary hide-scrollbar"
-            name="response"
-            placeholder="Send a response..."
-            required
-            value={value}
-            onChange={handleChange}
-            rows={1}
-            // errors={formState?.formErrors}
-          />
-          <FormButton payload="Send" />
-        </form>
-      </div>
+      <form
+        className="flex items-end fixed max-w-xl w-full bottom-20 mx-auto gap-px px-4"
+        action={action}
+      >
+        <Textarea
+          ref={textareaRef}
+          className="h-auto w-full resize-none rounded-xl bg-secondary hide-scrollbar"
+          name="response"
+          placeholder="Send a response..."
+          required
+          value={value}
+          onChange={handleChange}
+          rows={1}
+          // errors={formState?.formErrors}
+        />
+        <FormButton payload="Send" />
+      </form>
     </>
   );
 }

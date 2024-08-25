@@ -16,3 +16,16 @@ export async function getUser() {
   }
   notFound();
 }
+
+export async function getTweetsByUserId(id: number) {
+  return await db.tweet.findMany({
+    include: {
+      user: true,
+    },
+    where: {
+      user: {
+        id,
+      },
+    },
+  });
+}

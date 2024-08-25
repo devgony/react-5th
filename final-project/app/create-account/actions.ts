@@ -46,15 +46,9 @@ const checkUniqueEmail = async (
 };
 
 const formSchema = z.object({
-  email: z
-    .string()
-    .email()
-    .refine(
-      (email) => email.endsWith("@zod.com"),
-      "Email must end with @zod.com"
-    ),
+  email: z.string().email(),
   username: z.string().min(5, "Username must be at least 5 characters"),
-  password: z.string().min(10).regex(/[0-9]/, "Password must contain a number"),
+  password: z.string().min(6, "Password must be at least 6 characters"),
 });
 
 const superRefinedSchema = formSchema

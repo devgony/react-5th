@@ -3,14 +3,20 @@ import Avatar from "./avatar";
 
 interface Props {
   username: string;
+  photo: string | null;
   content: string;
   updated_at: Date;
 }
 
-export default function Article({ username, content, updated_at }: Props) {
+export default function Article({
+  username,
+  content,
+  updated_at,
+  photo,
+}: Props) {
   return (
     <article className="my-2 flex gap-2">
-      <Avatar username={username} />
+      <Avatar username={username} src={photo} />
       <section className="-mt-2">
         <span className="flex gap-2">
           <p className="text-blue-400">{username}</p>

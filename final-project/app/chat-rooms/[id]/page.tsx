@@ -11,9 +11,6 @@ interface Props {
   };
 }
 export default async function ChatRoom({ params: { id } }: Props) {
-  // console.log(id);
-  // const chatRoom = await getChatRoom(id);
-  // console.log("here", chatRoom);
   const initialMessages = await getMessages(id);
   const session = await getSession();
   if (!session.id) {

@@ -15,6 +15,7 @@ import { FaCircleArrowUp } from "react-icons/fa6";
 import { HiArrowUturnLeft } from "react-icons/hi2";
 import { Input } from "./ui/input";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import SendButton from "./send-button";
 
 const SUPABASE_PUBLIC_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!;
@@ -45,8 +46,7 @@ export default function ChatMessagesList({
     } = event;
     setMessage(value);
   };
-  const onSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
+  const onSubmit = async (formData: FormData) => {
     const messageId = await saveMessage(message, chatRoomId);
 
     setMessages((prevMsgs) => [
@@ -191,7 +191,7 @@ export default function ChatMessagesList({
       </div>
       <form
         className="flex fixed bottom-24 w-full max-w-xl px-4 items-center"
-        onSubmit={onSubmit}
+        action={onSubmit}
       >
         <Input
           required
@@ -202,9 +202,7 @@ export default function ChatMessagesList({
           name="message"
           placeholder="Write a message..."
         />
-        <button className="absolute right-5">
-          <FaCircleArrowUp className="size-10 transition-colors hover:text-primary" />
-        </button>
+        <SendButton />
       </form>
     </div>
   );

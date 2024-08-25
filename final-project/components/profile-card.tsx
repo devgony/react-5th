@@ -6,6 +6,7 @@ import { FaPencilAlt } from "react-icons/fa";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import { redirect } from "next/navigation";
 import { User } from "@prisma/client";
+import UserTweets from "./user-tweets";
 
 async function logOut() {
   "use server";
@@ -53,7 +54,7 @@ export default async function ProfileCard({ user }: Props) {
             </div>
           )}
         </section>
-        <section className="mt-4 rounded-xl bg-secondary p-4 flex flex-col">
+        <section className="my-4 rounded-xl bg-secondary p-4 flex flex-col">
           <p>Xcode Member since</p>
           <p>
             {user.created_at.toLocaleDateString("en-US", {
@@ -63,6 +64,9 @@ export default async function ProfileCard({ user }: Props) {
             })}
           </p>
         </section>
+        <hr className="mb-4" />
+        <UserTweets id={user.id} />
+        <div className="pb-24" />
       </div>
     </>
   );

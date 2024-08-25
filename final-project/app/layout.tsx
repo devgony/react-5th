@@ -28,9 +28,8 @@ export default async function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable,
-          "bg-yellow-900"
+          "min-h-screen bg-third font-sans antialiased",
+          fontSans.variable
         )}
       >
         <div className="mx-auto min-h-screen max-w-xl bg-background">

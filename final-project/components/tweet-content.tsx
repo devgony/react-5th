@@ -16,9 +16,8 @@ export default async function TweetContent({ tweet }: Props) {
     id,
     title,
     content,
-    photo,
     updated_at,
-    user: { username },
+    user: { username, photo },
   } = tweet;
   const { count, isLiked } = await getLikesCached(id);
   return (
@@ -30,7 +29,12 @@ export default async function TweetContent({ tweet }: Props) {
         />
         <h1 className="text-3xl font-bold">{title}</h1>
       </div>
-      <Article content={content} updated_at={updated_at} username={username} />
+      <Article
+        photo={photo}
+        content={content}
+        updated_at={updated_at}
+        username={username}
+      />
       {photo && (
         <div className="min-h-96 w-11/12 relative m-5 mx-auto">
           <Image className="object-contain" fill src={photo} alt={photo} />
