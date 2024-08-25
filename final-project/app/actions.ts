@@ -60,7 +60,6 @@ export async function addTweet(formData: FormData) {
     photo: formData.get("photo"),
   };
   const { success, error, data } = tweetSchema.safeParse(fdata);
-  console.log("formData", success, error, data);
 
   if (!success || !data) {
     return error?.flatten();

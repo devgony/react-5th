@@ -77,11 +77,8 @@ export default function AddTweet() {
   });
 
   const action = async () => {
-    console.log("action");
-
     await onSubmit();
   };
-  console.log(errors);
   return (
     <form
       className="animate-slide-up flex fixed w-full flex-col gap-4 rounded-2xl bg-secondary p-4 shadow-lg z-999 mx-auto min-h-screen max-w-xl -ml-4 mt-4 border-x-8 border-background"
@@ -121,10 +118,7 @@ export default function AddTweet() {
       )}
       <section className="fixed bottom-24 flex w-full max-w-xl justify-between pr-16">
         <label htmlFor="photo">
-          <AiFillPicture
-            className="h-10 w-10 cursor-pointer rounded-2xl bg-primary p-1 text-primary-foreground transition hover:scale-125"
-            onClick={() => console.log("TODO: Add image")}
-          />
+          <AiFillPicture className="h-10 w-10 cursor-pointer rounded-2xl bg-primary p-1 text-primary-foreground transition hover:scale-125" />
         </label>
         <Button
           type="submit"

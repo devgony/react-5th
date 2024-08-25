@@ -27,11 +27,9 @@ export default async function UserDetail({
   const user = await getUserByUsername(username);
   const tweets = await getTweetsByUsername(username);
   const session = await getSession();
-  console.log(user);
   return (
     <>
       <ProfileCard user={user} />
-      {/* tweets */}
     </>
   );
 }

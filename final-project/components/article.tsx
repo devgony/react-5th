@@ -36,7 +36,6 @@ export default function Article({
 }: Props) {
   const [isEditing, setIsEditing] = useState(false);
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    console.log(event.keyCode);
     if (event.keyCode === 13) {
       event.preventDefault();
       const target = event.target as HTMLTextAreaElement;
@@ -81,7 +80,6 @@ export default function Article({
                 if (type === "response") {
                   await editResponseContent(formData, id);
                 } else if (type === "tweet") {
-                  console.log("tweet", id);
                   await editTweetContent(formData, id);
                 }
 

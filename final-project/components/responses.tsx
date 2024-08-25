@@ -73,7 +73,6 @@ export default function Responses({ responses, tweetId, myId }: Props) {
 
   useEffect(() => {
     const scrollHeight = textareaRef.current?.scrollHeight;
-    console.log(scrollHeight);
     if (scrollHeight && scrollHeight > 400) {
       return;
     }

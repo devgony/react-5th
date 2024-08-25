@@ -19,7 +19,6 @@ export default function LikeButton({ count, isLiked, tweetId }: Props) {
     })
   );
   const onClick = async () => {
-    console.log("clicked");
     startTransition(() => {
       reducerFn(undefined);
     });

@@ -7,7 +7,6 @@ interface Props {
 }
 export default async function UserTweets({ id }: Props) {
   const tweets = await getTweetsByUserId(id);
-  console.log(tweets);
   return (
     <>
       <TweetList tweets={tweets} />

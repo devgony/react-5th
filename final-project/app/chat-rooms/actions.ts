@@ -71,18 +71,6 @@ export const getChatRooms = async () => {
     },
   });
 
-  console.log("chatRooms", chatRooms);
-
-  // const unreadMessages = await db.message.count({
-  //   where: {
-  //     message_read_by: {
-  //       none: {
-  //         userId: session.id,
-  //       },
-  //     },
-  //   },
-  // });
-
   const flattenedChatRooms = chatRooms
     .map((chatRoom) => {
       const { updated_at, payload } = chatRoom.messages[0] ?? {};
@@ -205,12 +193,6 @@ export async function getMessages(chatRoomId: string) {
     })),
   });
 
-  if (upserted.count > 0) {
-    // revalidateTag(`chat-room-${chatRoomId}-messeges`);
-    // console.log("revalidatePath", `/chats/${chatRoomId}`);
-    // revalidatePath(`/chats/${chatRoomId}`);
-  }
-
   const messages = await db.message.findMany({
     where: {
       chatRoomId,
@@ -240,8 +222,6 @@ export async function getMessages(chatRoomId: string) {
       read: message_read_by.length > 0, // TODO: handle with SQL
     };
   });
-
-  console.log(">>", res.length);
 
   return res;
 }
